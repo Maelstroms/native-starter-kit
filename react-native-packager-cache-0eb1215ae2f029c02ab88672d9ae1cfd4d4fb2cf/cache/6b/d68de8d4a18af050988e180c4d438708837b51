@@ -1,0 +1,26 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _redux = require("redux");
+
+var _reduxForm = require("redux-form");
+
+var _drawer = require("./drawer");
+
+var _drawer2 = babelHelpers.interopRequireDefault(_drawer);
+
+var _user = require("./user");
+
+var _user2 = babelHelpers.interopRequireDefault(_user);
+
+var _list = require("./list");
+
+var _list2 = babelHelpers.interopRequireDefault(_list);
+
+exports.default = (0, _redux.combineReducers)({
+  form: _reduxForm.reducer,
+  drawer: _drawer2.default,
+  user: _user2.default,
+  list: _list2.default
+});

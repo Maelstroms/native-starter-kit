@@ -15,7 +15,7 @@ import { Field, reduxForm } from "redux-form";
 import { setUser } from "../../actions/user";
 import styles from "./styles";
 
-const background = require("../../../images/shadow.png");
+const background = require("../../../images/tourologo.png");
 
 const validate = values => {
   const error = {};
@@ -100,6 +100,12 @@ class Login extends Component {
                   onPress={() => this.props.navigation.navigate("Home")}
                 >
                   <Text>Login</Text>
+                </Button>
+                <Button
+                  style={styles.btn}
+                  onPress={() => this.props.navigation.navigate("Home")}
+                >
+                  <Text>Forgot Password</Text>
                 </Button>
               </View>
             </Image>
