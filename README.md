@@ -127,6 +127,7 @@ $ git clone https://github.com/start-react/native-starter-kit.git
 
 $ cd native-starter-kit/
 
+$ npm install react-native-cli -g
 $ npm install
 ```
 
