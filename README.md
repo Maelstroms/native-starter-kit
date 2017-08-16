@@ -131,6 +131,7 @@ $ npm install
 ```
 
 ```sh
+$ npm start
 $ react-native link
 ```
 
