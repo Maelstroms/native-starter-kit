@@ -6,27 +6,15 @@ var _react = require("react");
 
 var _react2 = babelHelpers.interopRequireDefault(_react);
 
-var _reactNative = require("react-native");
-
 var _reactRedux = require("react-redux");
 
 var _blankPage = require("../blankPage2");
 
 var _blankPage2 = babelHelpers.interopRequireDefault(_blankPage);
 
-var _DrawBar = require("../DrawBar");
-
-var _DrawBar2 = babelHelpers.interopRequireDefault(_DrawBar);
-
 var _reactNavigation = require("react-navigation");
 
 var _nativeBase = require("native-base");
-
-var _reactNativeEasyGrid = require("react-native-easy-grid");
-
-var _list = require("../../actions/list");
-
-var _drawer = require("../../actions/drawer");
 
 var _styles = require("./styles");
 
@@ -102,22 +90,36 @@ var Home = function (_Component) {
 Home.navigationOptions = {
   header: null
 };
-Home.propTypes = {
-  name: _react2.default.PropTypes.string,
-  setIndex: _react2.default.PropTypes.func,
-  list: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.string),
-  openDrawer: _react2.default.PropTypes.func
-};
 
 
 function bindAction(dispatch) {
   return {
-    setIndex: function setIndex(index) {
-      return dispatch((0, _list.setIndex)(index));
-    },
-    openDrawer: function openDrawer() {
-      return dispatch((0, _drawer.openDrawer)());
-    }
+    setIndex: function (_setIndex) {
+      function setIndex(_x) {
+        return _setIndex.apply(this, arguments);
+      }
+
+      setIndex.toString = function () {
+        return _setIndex.toString();
+      };
+
+      return setIndex;
+    }(function (index) {
+      return dispatch(setIndex(index));
+    }),
+    openDrawer: function (_openDrawer) {
+      function openDrawer() {
+        return _openDrawer.apply(this, arguments);
+      }
+
+      openDrawer.toString = function () {
+        return _openDrawer.toString();
+      };
+
+      return openDrawer;
+    }(function () {
+      return dispatch(openDrawer());
+    })
   };
 }
 var mapStateToProps = function mapStateToProps(state) {
@@ -131,10 +133,6 @@ var HomeSwagger = (0, _reactRedux.connect)(mapStateToProps, bindAction)(Home);
 var DrawNav = (0, _reactNavigation.DrawerNavigator)({
   Home: { screen: HomeSwagger },
   BlankPage2: { screen: _blankPage2.default }
-}, {
-  contentComponent: function contentComponent(props) {
-    return _react2.default.createElement(_DrawBar2.default, props);
-  }
 });
 var DrawerNav = null;
 DrawNav.navigationOptions = function (_ref) {

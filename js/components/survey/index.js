@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import BlankPage2 from "../blankPage2";
-import DrawBar from "../DrawBar";
 import { DrawerNavigator, NavigationActions } from "react-navigation";
 import {
   Container,
@@ -18,8 +17,7 @@ import {
   Right
 } from "native-base";
 import { Grid, Row } from "react-native-easy-grid";
-import { setIndex } from "../../actions/list";
-import { openDrawer } from "../../actions/drawer";
+//import { setIndex } from "../../actions/list";
 import styles from "./styles";
 
 
@@ -28,54 +26,41 @@ class Survey extends Component {
   static navigationOptions = {
     header: null
   };
-  static propTypes = {
-    name: React.PropTypes.string,
-    setIndex: React.PropTypes.func,
-    list: React.PropTypes.arrayOf(React.PropTypes.string),
-    openDrawer: React.PropTypes.func
-  };
+
+  static numbers = [1, 2, 3, 4, 5];
+  static list = ["Student","Rotation", "Date Performed", "Prodedure Group","Prodedure","Diagnosis Group","Diagnosis", "Case Location","Role in Case", "Supervisor", "Patient Type", "Student Comments", "Alternate Experience", "Description of Alternate Experience"];
+
+  /*["Student","Rotation", "Date Performed", "Prodedure Group","Prodedure","Diagnosis Group", "Diagnosis", "Case Location", "Role in Case", "Supervisor", "Patient Type", "Student Comments", "Alternate Experience", "Description of Alternate Experience"]
+
+  setIndex: React.PropTypes.func,
+
+     setParams: [Function: setParams] },
+  name: '',
+  list:
+   [ 'React Native Starter Kit',
+     'React Navigation',
+     'NativeBase Easy Grid',
+     'NativeBase',
+     'CodePush',
+     'Redux' ],
+  setIndex: [Function: setIndex],
+  openDrawer: { [Function: openDrawer] toString: [Function] } }
+
 
   newPage(index) {
     this.props.setIndex(index);
     Actions.blankPage();
   }
+  */
 
   render() {
     console.log(DrawNav, "786785786");
+    console.log('PROPS');
+    console.log(this.props);
+    console.log('STATE');
+    console.log(this.state);
     return (
-      <Container style={styles.container}>
-        {/*<Header>
-          <Left>
-
-            <Button
-              transparent
-              onPress={() => {
-                DrawerNav.dispatch(
-                  NavigationActions.reset({
-                    index: 0,
-                    actions: [NavigationActions.navigate({ routeName: "Home" })]
-                  })
-                );
-                DrawerNav.goBack();
-              }}
-            >
-              <Icon active name="power" />
-            </Button>
-          </Left>
-
-          <Body>
-            <Title>Home</Title>
-          </Body>
-
-          <Right>
-            <Button
-              transparent
-              onPress={() => DrawerNav.navigate("DrawerOpen")}
-            >
-              <Icon active name="menu" />
-            </Button>
-          </Right>
-        </Header>*/}
+      <Container>
         <View style={styles.container}>
           <Content>
             <View style={styles.bg}>
@@ -87,8 +72,7 @@ class Survey extends Component {
                       onPress={() =>
                         this.props.navigation.navigate("BlankPage", {
                           name: { item }
-                        })}
-                    >
+                        })}>
                       <Text style={styles.text}>{item}</Text>
                     </TouchableOpacity>
                   </Row>
@@ -97,7 +81,7 @@ class Survey extends Component {
               <Button
                 style={styles.btn}
                 onPress={() => this.props.navigation.navigate("Home")}>
-                      <Text>Start Survey</Text>
+                      <Text>Clear</Text>
                </Button>
                <Button
                 style={styles.btn}
@@ -114,13 +98,13 @@ class Survey extends Component {
 
 function bindAction(dispatch) {
   return {
-    setIndex: index => dispatch(setIndex(index)),
-    openDrawer: () => dispatch(openDrawer())
+    setIndex: index => dispatch(setIndex(index))
   };
 }
+//This const creates the list for the items...
 const mapStateToProps = state => ({
   name: state.user.name,
-  list: state.list.list
+  list: ["Student","Rotation", "Date Performed", "Prodedure Group","Prodedure","Diagnosis Group","Diagnosis", "Case Location","Role in Case", "Supervisor", "Patient Type", "Student Comments", "Alternate Experience", "Description of Alternate Experience"]
 });
 
 const SurveySwagger = connect(mapStateToProps, bindAction)(Survey);
@@ -128,9 +112,6 @@ const DrawNav = DrawerNavigator(
   {
     Survey: { screen: SurveySwagger },
     BlankPage2: { screen: BlankPage2 }
-  },
-  {
-    contentComponent: props => <DrawBar {...props} />
   }
 );
 const DrawerNav = null;

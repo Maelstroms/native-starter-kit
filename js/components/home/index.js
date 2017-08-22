@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import BlankPage2 from "../blankPage2";
-import DrawBar from "../DrawBar";
 import { DrawerNavigator, NavigationActions } from "react-navigation";
 import {
   Container,
@@ -17,9 +15,6 @@ import {
   Body,
   Right
 } from "native-base";
-import { Grid, Row } from "react-native-easy-grid";
-import { setIndex } from "../../actions/list";
-import { openDrawer } from "../../actions/drawer";
 import styles from "./styles";
 
 
@@ -27,12 +22,6 @@ import styles from "./styles";
 class Home extends Component {
   static navigationOptions = {
     header: null
-  };
-  static propTypes = {
-    name: React.PropTypes.string,
-    setIndex: React.PropTypes.func,
-    list: React.PropTypes.arrayOf(React.PropTypes.string),
-    openDrawer: React.PropTypes.func
   };
 
   newPage(index) {
@@ -44,56 +33,9 @@ class Home extends Component {
     console.log(DrawNav, "786785786");
     return (
       <Container style={styles.container}>
-        {/*<Header>
-          <Left>
-
-            <Button
-              transparent
-              onPress={() => {
-                DrawerNav.dispatch(
-                  NavigationActions.reset({
-                    index: 0,
-                    actions: [NavigationActions.navigate({ routeName: "Home" })]
-                  })
-                );
-                DrawerNav.goBack();
-              }}
-            >
-              <Icon active name="power" />
-            </Button>
-          </Left>
-
-          <Body>
-            <Title>Home</Title>
-          </Body>
-
-          <Right>
-            <Button
-              transparent
-              onPress={() => DrawerNav.navigate("DrawerOpen")}
-            >
-              <Icon active name="menu" />
-            </Button>
-          </Right>
-        </Header>*/}
         <View style={styles.container}>
           <Content>
             <View style={styles.bg}>
-              {/* <Grid style={styles.mt}>
-                {this.props.list.map((item, i) => (
-                  <Row key={i}>
-                    <TouchableOpacity
-                      style={styles.row}
-                      onPress={() =>
-                        this.props.navigation.navigate("BlankPage", {
-                          name: { item }
-                        })}
-                    >
-                      <Text style={styles.text}>{item}</Text>
-                    </TouchableOpacity>
-                  </Row>
-                ))}
-              </Grid> */}
               <Button
                 style={styles.btn}
                 onPress={() => this.props.navigation.navigate("Survey")}>
@@ -128,9 +70,6 @@ const DrawNav = DrawerNavigator(
   {
     Home: { screen: HomeSwagger },
     BlankPage2: { screen: BlankPage2 }
-  },
-  {
-    contentComponent: props => <DrawBar {...props} />
   }
 );
 const DrawerNav = null;

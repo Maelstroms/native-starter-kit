@@ -14,19 +14,11 @@ var _blankPage = require("../blankPage2");
 
 var _blankPage2 = babelHelpers.interopRequireDefault(_blankPage);
 
-var _DrawBar = require("../DrawBar");
-
-var _DrawBar2 = babelHelpers.interopRequireDefault(_DrawBar);
-
 var _reactNavigation = require("react-navigation");
 
 var _nativeBase = require("native-base");
 
 var _reactNativeEasyGrid = require("react-native-easy-grid");
-
-var _list = require("../../actions/list");
-
-var _drawer = require("../../actions/drawer");
 
 var _styles = require("./styles");
 
@@ -41,20 +33,18 @@ var Survey = function (_Component) {
   }
 
   babelHelpers.createClass(Survey, [{
-    key: "newPage",
-    value: function newPage(index) {
-      this.props.setIndex(index);
-      Actions.blankPage();
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
       console.log(DrawNav, "786785786");
+      console.log('PROPS');
+      console.log(this.props);
+      console.log('STATE');
+      console.log(this.state);
       return _react2.default.createElement(
         _nativeBase.Container,
-        { style: _styles2.default.container },
+        null,
         _react2.default.createElement(
           _nativeBase.View,
           { style: _styles2.default.container },
@@ -79,8 +69,7 @@ var Survey = function (_Component) {
                           return _this2.props.navigation.navigate("BlankPage", {
                             name: { item: item }
                           });
-                        }
-                      },
+                        } },
                       _react2.default.createElement(
                         _nativeBase.Text,
                         { style: _styles2.default.text },
@@ -100,7 +89,7 @@ var Survey = function (_Component) {
                 _react2.default.createElement(
                   _nativeBase.Text,
                   null,
-                  "Start Survey"
+                  "Clear"
                 )
               ),
               _react2.default.createElement(
@@ -128,28 +117,31 @@ var Survey = function (_Component) {
 Survey.navigationOptions = {
   header: null
 };
-Survey.propTypes = {
-  name: _react2.default.PropTypes.string,
-  setIndex: _react2.default.PropTypes.func,
-  list: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.string),
-  openDrawer: _react2.default.PropTypes.func
-};
+Survey.numbers = [1, 2, 3, 4, 5];
+Survey.list = ["Student", "Rotation", "Date Performed", "Prodedure Group", "Prodedure", "Diagnosis Group", "Diagnosis", "Case Location", "Role in Case", "Supervisor", "Patient Type", "Student Comments", "Alternate Experience", "Description of Alternate Experience"];
 
 
 function bindAction(dispatch) {
   return {
-    setIndex: function setIndex(index) {
-      return dispatch((0, _list.setIndex)(index));
-    },
-    openDrawer: function openDrawer() {
-      return dispatch((0, _drawer.openDrawer)());
-    }
+    setIndex: function (_setIndex) {
+      function setIndex(_x) {
+        return _setIndex.apply(this, arguments);
+      }
+
+      setIndex.toString = function () {
+        return _setIndex.toString();
+      };
+
+      return setIndex;
+    }(function (index) {
+      return dispatch(setIndex(index));
+    })
   };
 }
 var mapStateToProps = function mapStateToProps(state) {
   return {
     name: state.user.name,
-    list: state.list.list
+    list: ["Student", "Rotation", "Date Performed", "Prodedure Group", "Prodedure", "Diagnosis Group", "Diagnosis", "Case Location", "Role in Case", "Supervisor", "Patient Type", "Student Comments", "Alternate Experience", "Description of Alternate Experience"]
   };
 };
 
@@ -157,10 +149,6 @@ var SurveySwagger = (0, _reactRedux.connect)(mapStateToProps, bindAction)(Survey
 var DrawNav = (0, _reactNavigation.DrawerNavigator)({
   Survey: { screen: SurveySwagger },
   BlankPage2: { screen: _blankPage2.default }
-}, {
-  contentComponent: function contentComponent(props) {
-    return _react2.default.createElement(_DrawBar2.default, props);
-  }
 });
 var DrawerNav = null;
 DrawNav.navigationOptions = function (_ref) {
