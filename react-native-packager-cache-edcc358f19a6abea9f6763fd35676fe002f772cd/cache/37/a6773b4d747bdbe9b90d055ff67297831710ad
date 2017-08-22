@@ -1,0 +1,12 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setIndex = setIndex;
+var SET_INDEX = exports.SET_INDEX = 'SET_INDEX';
+
+function setIndex(index) {
+  return {
+    type: SET_INDEX,
+    payload: index
+  };
+}

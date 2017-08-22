@@ -23,7 +23,7 @@ import styles from "./styles";
 
 
 
-class Home extends Component {
+class ForgotPassword extends Component {
   static navigationOptions = {
     header: null
   };
@@ -52,7 +52,7 @@ class Home extends Component {
                 DrawerNav.dispatch(
                   NavigationActions.reset({
                     index: 0,
-                    actions: [NavigationActions.navigate({ routeName: "Home" })]
+                    actions: [NavigationActions.navigate({ routeName: "ForgotPassword" })]
                   })
                 );
                 DrawerNav.goBack();
@@ -91,15 +91,10 @@ class Home extends Component {
               </Row>
             ))}
           </Grid> */}
-          <Button
-            style={styles.btn}
-            onPress={() => this.props.navigation.navigate("Home")}>
-                  <Text>Start Survey</Text>
-           </Button>
            <Button
             style={styles.btn}
-            onPress={() => this.props.navigation.navigate("Home")}>
-                  <Text>Logout</Text>
+            onPress={() => this.props.navigation.navigate("Login")}>
+                  <Text>Cancel</Text>
            </Button>
         </Content>
       </Container>
@@ -118,10 +113,10 @@ const mapStateToProps = state => ({
   list: state.list.list
 });
 
-const HomeSwagger = connect(mapStateToProps, bindAction)(Home);
+const ForgotPasswordSwagger = connect(mapStateToProps, bindAction)(ForgotPassword);
 const DrawNav = DrawerNavigator(
   {
-    Home: { screen: HomeSwagger },
+    ForgotPassword: { screen: ForgotPassword },
     BlankPage2: { screen: BlankPage2 }
   },
   {

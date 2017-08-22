@@ -1,0 +1,87 @@
+
+
+
+
+
+
+
+'use strict';
+
+
+
+
+jest.
+mock('ReactNativeDefaultInjection').
+mock('Image',function(){return mockReactNative.mockComponent('Image');}).
+mock('Text',function(){return mockReactNative.mockComponent('Text');}).
+mock('TextInput',function(){return mockReactNative.mockComponent('TextInput');}).
+mock('Modal',function(){return mockReactNative.mockComponent('Modal');}).
+mock('View',function(){return mockReactNative.mockComponent('View');}).
+mock('ScrollView',function(){return mockReactNative.mockComponent('ScrollView');}).
+mock(
+'ActivityIndicator',
+function(){return mockReactNative.mockComponent('ActivityIndicator');}).
+
+mock('ListView',function(){
+var RealListView=require.requireActual('ListView');
+var ListView=mockReactNative.mockComponent('ListView');
+ListView.prototype.render=RealListView.prototype.render;
+return ListView;
+}).
+mock('ListViewDataSource',function(){
+var DataSource=require.requireActual('ListViewDataSource');
+DataSource.prototype.toJSON=function(){
+function ListViewDataSource(dataBlob){var _this=this;
+this.items=0;
+
+try{
+Object.keys(dataBlob).forEach(function(key){
+_this.items+=dataBlob[key]&&dataBlob[key].length;
+});
+}catch(e){
+this.items='unknown';
+}
+}
+
+return new ListViewDataSource(this._dataBlob);
+};
+return DataSource;
+}).
+mock('ensureComponentIsNative',function(){return function(){return true;};});var mockReactNative=require('./index');
+
+global.__DEV__=true;
+global.__fbBatchedBridgeConfig=require('./bridge-mock');var _require=
+
+require('whatwg-fetch');var Response=_require.Response,Request=_require.Request,Headers=_require.Headers,fetch=_require.fetch;
+global.Response=Response;
+global.Request=Request;
+global.Headers=Headers;
+global.fetch=fetch;
+
+require(
+'react-native/packager/react-packager/src/Resolver/polyfills/Object.es7');
+
+require(
+'react-native/packager/react-packager/src/Resolver/polyfills/error-guard');
+
+
+var mockNativeModules=require('NativeModules');
+var mockEmptyObject={};
+var mockImageLoader={
+configurable:true,
+enumerable:true,
+get:function get(){return{
+prefetchImage:jest.fn(),
+getSize:jest.fn(
+function(uri,success){return process.nextTick(function(){return success(320,240);});})};}};
+
+
+
+Object.defineProperty(mockNativeModules,'ImageLoader',mockImageLoader);
+Object.defineProperty(mockNativeModules,'ImageViewManager',mockImageLoader);
+
+jest.
+doMock('NativeModules',function(){return mockNativeModules;}).
+doMock('ReactNativePropRegistry',function(){return{
+register:function register(id){return id;},
+getByID:function getByID(){return mockEmptyObject;}};});

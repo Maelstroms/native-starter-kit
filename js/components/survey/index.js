@@ -24,7 +24,7 @@ import styles from "./styles";
 
 
 
-class Home extends Component {
+class Survey extends Component {
   static navigationOptions = {
     header: null
   };
@@ -79,7 +79,7 @@ class Home extends Component {
         <View style={styles.container}>
           <Content>
             <View style={styles.bg}>
-              {/* <Grid style={styles.mt}>
+              {<Grid style={styles.mt}>
                 {this.props.list.map((item, i) => (
                   <Row key={i}>
                     <TouchableOpacity
@@ -93,7 +93,7 @@ class Home extends Component {
                     </TouchableOpacity>
                   </Row>
                 ))}
-              </Grid> */}
+              </Grid> }
               <Button
                 style={styles.btn}
                 onPress={() => this.props.navigation.navigate("Home")}>
@@ -102,7 +102,7 @@ class Home extends Component {
                <Button
                 style={styles.btn}
                 onPress={() => this.props.navigation.navigate("Home")}>
-                      <Text>Logout</Text>
+                      <Text>Cancel</Text>
                </Button>
              </View>
           </Content>
@@ -123,10 +123,10 @@ const mapStateToProps = state => ({
   list: state.list.list
 });
 
-const HomeSwagger = connect(mapStateToProps, bindAction)(Home);
+const SurveySwagger = connect(mapStateToProps, bindAction)(Survey);
 const DrawNav = DrawerNavigator(
   {
-    Home: { screen: HomeSwagger },
+    Survey: { screen: SurveySwagger },
     BlankPage2: { screen: BlankPage2 }
   },
   {

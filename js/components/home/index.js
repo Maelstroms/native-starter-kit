@@ -97,7 +97,7 @@ class Home extends Component {
               </Grid> */}
               <Button
                 style={styles.btn}
-                onPress={() => this.props.navigation.navigate("Home")}>
+                onPress={() => this.props.navigation.navigate("Survey")}>
                       <Text>Start Survey</Text>
                </Button>
                <Button
