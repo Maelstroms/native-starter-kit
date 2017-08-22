@@ -1,0 +1,22 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments[1];
+
+  if (action.type === _list.SET_INDEX) {
+    return babelHelpers.extends({}, state, {
+      selectedIndex: action.payload
+    });
+  }
+  return state;
+};
+
+var _list = require("../actions/list");
+
+var initialState = {
+  list: ["React Native Starter Kit", "React Navigation", "NativeBase Easy Grid", "NativeBase", "CodePush", "Redux"],
+  selectedIndex: undefined
+};

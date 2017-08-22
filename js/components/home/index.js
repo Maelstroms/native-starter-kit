@@ -7,6 +7,7 @@ import { DrawerNavigator, NavigationActions } from "react-navigation";
 import {
   Container,
   Header,
+  View,
   Title,
   Content,
   Text,
@@ -17,10 +18,11 @@ import {
   Right
 } from "native-base";
 import { Grid, Row } from "react-native-easy-grid";
-
 import { setIndex } from "../../actions/list";
 import { openDrawer } from "../../actions/drawer";
 import styles from "./styles";
+
+
 
 class Home extends Component {
   static navigationOptions = {
@@ -42,7 +44,7 @@ class Home extends Component {
     console.log(DrawNav, "786785786");
     return (
       <Container style={styles.container}>
-        <Header>
+        {/*<Header>
           <Left>
 
             <Button
@@ -73,24 +75,39 @@ class Home extends Component {
               <Icon active name="menu" />
             </Button>
           </Right>
-        </Header>
-        <Content>
-          <Grid style={styles.mt}>
-            {this.props.list.map((item, i) => (
-              <Row key={i}>
-                <TouchableOpacity
-                  style={styles.row}
-                  onPress={() =>
-                    this.props.navigation.navigate("BlankPage", {
-                      name: { item }
-                    })}
-                >
-                  <Text style={styles.text}>{item}</Text>
-                </TouchableOpacity>
-              </Row>
-            ))}
-          </Grid>
-        </Content>
+        </Header>*/}
+        <View style={styles.container}>
+          <Content>
+            <View style={styles.bg}>
+              {/* <Grid style={styles.mt}>
+                {this.props.list.map((item, i) => (
+                  <Row key={i}>
+                    <TouchableOpacity
+                    <TouchableOpacity
+                      style={styles.row}
+                      onPress={() =>
+                        this.props.navigation.navigate("BlankPage", {
+                          name: { item }
+                        })}
+                    >
+                      <Text style={styles.text}>{item}</Text>
+                    </TouchableOpacity>
+                  </Row>
+                ))}
+              </Grid> */}
+              <Button
+                style={styles.btn}
+                onPress={() => this.props.navigation.navigate("Home")}>
+                      <Text>Start Survey</Text>
+               </Button>
+               <Button
+                style={styles.btn}
+                onPress={() => this.props.navigation.navigate("Login")}>
+                      <Text>Logout</Text>
+               </Button>
+             </View>
+          </Content>
+        </View>
       </Container>
     );
   }

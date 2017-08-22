@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image } from "react-native";
+import { Image, TextInput } from "react-native";
 import { connect } from "react-redux";
 import {
   Container,
@@ -21,13 +21,19 @@ const validate = values => {
   const error = {};
   error.email = "";
   error.password = "";
-  var ema = values.email;
-  var pw = values.password;
+  var ema;
+  var pw;
   if (values.email === undefined) {
     ema = "";
   }
+  if (values.email != undefined) {
+    ema = values.email;
+  }
   if (values.password === undefined) {
     pw = "";
+  }
+  if (values.password != undefined) {
+    pw = values.password;
   }
   if (ema.length < 8 && ema !== "") {
     error.email = "too short";
@@ -44,30 +50,34 @@ const validate = values => {
   return error;
 };
 
+
+
 class Login extends Component {
   static propTypes = {
     setUser: React.PropTypes.func
   };
+
   constructor(props) {
     super(props);
     this.state = {
       name: ""
     };
     this.renderInput = this.renderInput.bind(this);
+    this.loginButtonLogic = this.loginButtonLogic.bind(this);
   }
 
   setUser(name) {
     this.props.setUser(name);
   }
+
   renderInput({
     input,
     label,
     type,
     meta: { touched, error, warning },
     inputProps
-  }) {
-    var hasError = false;
-    if (error !== undefined) {
+  }) {var hasError = false ;
+    if (error != undefined) {
       hasError = true;
     }
     return (
@@ -75,6 +85,7 @@ class Login extends Component {
         <Icon active name={input.name === "email" ? "person" : "unlock"} />
         <Input
           placeholder={input.name === "email" ? "EMAIL" : "PASSWORD"}
+          onChangeText={(username) => this.setState({username})}
           {...input}
         />
         {hasError
@@ -86,6 +97,26 @@ class Login extends Component {
       </Item>
     );
   }
+
+  loginButtonLogic() {
+    validate
+    console.log("hit nav button");
+    console.log(this.state);
+    console.log(this.props.valid);
+    handleSome = () => {
+        console.log(this.state.username)
+   };
+   handleSome();
+    
+  if (this.props.valid && this.state.username) {
+    console.log("Login successful");
+    return () => this.props.navigation.navigate("Home")
+  } else { 
+    console.log("Incorrect password");
+    return () => this.props.navigation.navigate("ForgotPassword")
+  }
+  }
+
   render() {
     return (
       <Container>
@@ -93,17 +124,19 @@ class Login extends Component {
           <Content>
             <Image source={background} style={styles.shadow}>
               <View style={styles.bg}>
-                <Field name="email" component={this.renderInput} />
+                
+                <Field name="email" component={this.renderInput} onChangeText={(username) => this.setState({username})} />
                 <Field name="password" component={this.renderInput} />
+
                 <Button
                   style={styles.btn}
-                  onPress={() => this.props.navigation.navigate("Home")}
+                  onPress={this.loginButtonLogic()}
                 >
                   <Text>Login</Text>
                 </Button>
                 <Button
-                  style={styles.btn}
-                  onPress={() => this.props.navigation.navigate("Home")}
+                  style={styles.btn /*change this to hypertext*/}
+                  onPress={() => this.props.navigation.navigate("ForgotPassword")}
                 >
                   <Text>Forgot Password</Text>
                 </Button>
@@ -115,17 +148,22 @@ class Login extends Component {
     );
   }
 }
+
+
 const LoginSwag = reduxForm(
   {
     form: "test",
     validate
   },
   function bindActions(dispatch) {
+    console.log("LOGIN SWAG");
+    
     return {
       setUser: name => dispatch(setUser(name))
     };
   }
 )(Login);
+
 LoginSwag.navigationOptions = {
   header: null
 };

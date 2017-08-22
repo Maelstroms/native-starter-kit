@@ -72,6 +72,8 @@ var Login = function (_Component) {
   }, {
     key: "renderInput",
     value: function renderInput(_ref) {
+      var _this2 = this;
+
       var input = _ref.input,
           label = _ref.label,
           type = _ref.type,
@@ -80,7 +82,6 @@ var Login = function (_Component) {
           error = _ref$meta.error,
           warning = _ref$meta.warning,
           inputProps = _ref.inputProps;
-
       var hasError = false;
       if (error !== undefined) {
         hasError = true;
@@ -90,7 +91,10 @@ var Login = function (_Component) {
         { error: hasError },
         _react2.default.createElement(_nativeBase.Icon, { active: true, name: input.name === "email" ? "person" : "unlock" }),
         _react2.default.createElement(_nativeBase.Input, babelHelpers.extends({
-          placeholder: input.name === "email" ? "EMAIL" : "PASSWORD"
+          placeholder: input.name === "email" ? "EMAIL" : "PASSWORD",
+          onChangeText: function onChangeText(username) {
+            return _this2.setState({ username: username });
+          }
         }, input)),
         hasError ? _react2.default.createElement(
           _nativeBase.Item,
@@ -105,9 +109,31 @@ var Login = function (_Component) {
       );
     }
   }, {
+    key: "loginButtonLogic",
+    value: function loginButtonLogic(p) {
+      var _this3 = this;
+
+      console.log("hit nav button");
+      console.log(this.state);
+      console.log(LoginSwag);
+      console.log("STARTING THE PROP LIST");
+      console.log(this.props);
+      console.log("ENDING THE PROP LIST");
+      console.log(this.props.valid);
+      handleSome = function handleSome() {
+        console.log(_this3.state.username);
+      };
+      handleSome();
+      return this.props.valid ? function () {
+        return _this3.props.navigation.navigate("Home");
+      } : function () {
+        return _this3.props.navigation.navigate("ForgotPassword");
+      };
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this4 = this;
 
       return _react2.default.createElement(
         _nativeBase.Container,
@@ -124,15 +150,15 @@ var Login = function (_Component) {
               _react2.default.createElement(
                 _nativeBase.View,
                 { style: _styles2.default.bg },
-                _react2.default.createElement(_reduxForm.Field, { name: "email", component: this.renderInput }),
+                _react2.default.createElement(_reduxForm.Field, { name: "email", component: this.renderInput, onChangeText: function onChangeText(username) {
+                    return _this4.setState({ username: username });
+                  } }),
                 _react2.default.createElement(_reduxForm.Field, { name: "password", component: this.renderInput }),
                 _react2.default.createElement(
                   _nativeBase.Button,
                   {
                     style: _styles2.default.btn,
-                    onPress: function onPress() {
-                      return _this2.props.navigation.navigate("Home");
-                    }
+                    onPress: this.loginButtonLogic(this.props.values)
                   },
                   _react2.default.createElement(
                     _nativeBase.Text,
@@ -145,7 +171,7 @@ var Login = function (_Component) {
                   {
                     style: _styles2.default.btn,
                     onPress: function onPress() {
-                      return _this2.props.navigation.navigate("Home");
+                      return _this4.props.navigation.navigate("ForgotPassword");
                     }
                   },
                   _react2.default.createElement(
@@ -168,16 +194,20 @@ Login.propTypes = {
   setUser: _react2.default.PropTypes.func
 };
 
+
 var LoginSwag = (0, _reduxForm.reduxForm)({
   form: "test",
   validate: validate
 }, function bindActions(dispatch) {
+  console.log("LOGIN SWAG");
+
   return {
     setUser: function setUser(name) {
       return dispatch((0, _user.setUser)(name));
     }
   };
 })(Login);
+
 LoginSwag.navigationOptions = {
   header: null
 };
