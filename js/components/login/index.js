@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, TextInput } from "react-native";
+import { Image, TextInput, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import {
   Container,
@@ -107,11 +107,11 @@ class Login extends Component {
         console.log(this.state.username)
    };
    handleSome();
-    
+
   if (this.props.valid && this.state.username) {
     console.log("Login successful");
     return () => this.props.navigation.navigate("Home")
-  } else { 
+  } else {
     console.log("Incorrect password");
     return () => this.props.navigation.navigate("ForgotPassword")
   }
@@ -124,7 +124,7 @@ class Login extends Component {
           <Content>
             <Image source={background} style={styles.shadow}>
               <View style={styles.bg}>
-                
+
                 <Field name="email" component={this.renderInput} onChangeText={(username) => this.setState({username})} />
                 <Field name="password" component={this.renderInput} />
 
@@ -134,12 +134,12 @@ class Login extends Component {
                 >
                   <Text>Login</Text>
                 </Button>
-                <Button
-                  style={styles.btn /*change this to hypertext*/}
-                  onPress={() => this.props.navigation.navigate("ForgotPassword")}
-                >
-                  <Text>Forgot Password</Text>
-                </Button>
+                <TouchableOpacity
+                    style={styles.row}
+                    onPress={() => this.props.navigation.navigate("ForgotPassword")}
+                  >
+                    <Text style={styles.text}>Forgot Password</Text>
+                  </TouchableOpacity>
               </View>
             </Image>
           </Content>
@@ -157,7 +157,7 @@ const LoginSwag = reduxForm(
   },
   function bindActions(dispatch) {
     console.log("LOGIN SWAG");
-    
+
     return {
       setUser: name => dispatch(setUser(name))
     };

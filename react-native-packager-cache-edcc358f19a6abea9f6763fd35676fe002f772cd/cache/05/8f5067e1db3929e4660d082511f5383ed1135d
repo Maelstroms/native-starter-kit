@@ -190,6 +190,20 @@ var Login = function (_Component) {
                     null,
                     "Forgot Password"
                   )
+                ),
+                _react2.default.createElement(
+                  _reactNative.TouchableOpacity,
+                  {
+                    style: _styles2.default.row,
+                    onPress: function onPress() {
+                      return _this4.props.navigation.navigate("ForgotPassword");
+                    }
+                  },
+                  _react2.default.createElement(
+                    _nativeBase.Text,
+                    { style: _styles2.default.text },
+                    "\"Forgot Password\""
+                  )
                 )
               )
             )

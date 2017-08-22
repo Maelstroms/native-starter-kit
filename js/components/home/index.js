@@ -83,7 +83,6 @@ class Home extends Component {
                 {this.props.list.map((item, i) => (
                   <Row key={i}>
                     <TouchableOpacity
-                    <TouchableOpacity
                       style={styles.row}
                       onPress={() =>
                         this.props.navigation.navigate("BlankPage", {

@@ -19,6 +19,11 @@ export default {
     width: null,
     height: null,
   },
+  text: {
+    fontSize: 20,
+    marginBottom: 15,
+    alignItems: 'center',
+  },
   bg: {
     flex: 1,
     marginTop: deviceHeight / 1.75,
@@ -32,6 +37,10 @@ export default {
     marginBottom: 20,
   },
   btn: {
+    marginTop: 20,
+    alignSelf: 'center',
+  },
+  row: {
     marginTop: 20,
     alignSelf: 'center',
   },

@@ -43,38 +43,7 @@ class ForgotPassword extends Component {
     console.log(DrawNav, "786785786");
     return (
       <Container style={styles.container}>
-        <Header>
-          <Left>
 
-            <Button
-              transparent
-              onPress={() => {
-                DrawerNav.dispatch(
-                  NavigationActions.reset({
-                    index: 0,
-                    actions: [NavigationActions.navigate({ routeName: "ForgotPassword" })]
-                  })
-                );
-                DrawerNav.goBack();
-              }}
-            >
-              <Icon active name="power" />
-            </Button>
-          </Left>
-
-          <Body>
-            <Title>Home</Title>
-          </Body>
-
-          <Right>
-            <Button
-              transparent
-              onPress={() => DrawerNav.navigate("DrawerOpen")}
-            >
-              <Icon active name="menu" />
-            </Button>
-          </Right>
-        </Header>
         <Content>
           {/* <Grid style={styles.mt}>
             {this.props.list.map((item, i) => (
