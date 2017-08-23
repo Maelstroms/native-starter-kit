@@ -1,0 +1,37 @@
+module.exports = function (React, ReactNative, _ref) {
+  var model = _ref.model,
+      styles = _ref.styles;
+  var View = ReactNative.View,
+      TouchableWithoutFeedback = ReactNative.TouchableWithoutFeedback;
+
+
+  var MenuOption = React.createClass({
+    displayName: 'MenuOption',
+    contextTypes: {
+      menuController: model.IMenuController
+    },
+    onPress: function onPress() {
+      !this.props.disabled && this.props.onPress(this.props.value);
+    },
+    render: function render() {
+      if (this.props.renderTouchable) {
+        return React.cloneElement(this.props.renderTouchable(), { onPress: this.onPress }, React.createElement(
+          View,
+          { style: [styles.option, this.props.style] },
+          this.props.children
+        ));
+      }
+      return React.createElement(
+        TouchableWithoutFeedback,
+        { onPress: this.onPress },
+        React.createElement(
+          View,
+          { style: [styles.option, this.props.style] },
+          this.props.children
+        )
+      );
+    }
+  });
+
+  return MenuOption;
+};
