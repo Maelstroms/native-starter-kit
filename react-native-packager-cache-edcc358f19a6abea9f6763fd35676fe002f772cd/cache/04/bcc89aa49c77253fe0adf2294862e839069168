@@ -44,43 +44,53 @@ exports.default = {
     marginTop: 20,
     alignSelf: 'center'
   },
-  menuTrigger: {
-    flexDirection: 'row',
-    paddingHorizontal: 10
-  },
-  menuTriggerText: {
-    color: 'lightgrey',
-    fontWeight: '600',
-    fontSize: 20
-  },
-  divider: {
-    marginVertical: 5,
-    marginHorizontal: 2,
-    borderBottomWidth: 1,
-    borderColor: '#ccc'
-  },
-  content: {
-    backgroundColor: 'white',
-    paddingHorizontal: 10,
+  dropdown_2: {
+    flex: 1,
+    alignSelf: 'center',
+    width: 150,
+    top: 32,
+    right: 8,
+    borderWidth: 0,
+    borderRadius: 3,
     paddingTop: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
     paddingBottom: 30,
-    borderBottomWidth: 1,
-    borderColor: '#ccc'
+    backgroundColor: 'cornflowerblue'
   },
-  contentText: {
-    fontSize: 18
+  dropdown_2_text: {
+    marginVertical: 10,
+    marginHorizontal: 6,
+    fontSize: 18,
+    color: 'white',
+    textAlign: 'center',
+    textAlignVertical: 'center'
   },
-  dropdown: {
-    width: 300,
-    borderColor: '#999',
-    borderWidth: 1,
-    padding: 5
-  },
-  dropdownOptions: {
-    marginTop: 30,
-    borderColor: '#ccc',
+  dropdown_2_dropdown: {
+    width: 150,
+    height: 300,
+    borderColor: 'cornflowerblue',
     borderWidth: 2,
-    width: 300,
-    height: 200
+    borderRadius: 3
+  },
+  dropdown_2_row: {
+    flexDirection: 'row',
+    height: 40,
+    alignItems: 'center'
+  },
+  dropdown_2_image: {
+    marginLeft: 4,
+    width: 30,
+    height: 30
+  },
+  dropdown_2_row_text: {
+    marginHorizontal: 4,
+    fontSize: 16,
+    color: 'navy',
+    textAlignVertical: 'center'
+  },
+  dropdown_2_separator: {
+    height: 1,
+    backgroundColor: 'cornflowerblue'
   }
 };

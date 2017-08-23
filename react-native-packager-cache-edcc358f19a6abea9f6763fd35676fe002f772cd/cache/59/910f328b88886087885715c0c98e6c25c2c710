@@ -8,9 +8,9 @@ var _react2 = babelHelpers.interopRequireDefault(_react);
 
 var _reactNative = require("react-native");
 
-var _reactNativeMenu = require("react-native-menu");
+var _reactNativeModalDropdown = require("react-native-modal-dropdown");
 
-var _reactNativeMenu2 = babelHelpers.interopRequireDefault(_reactNativeMenu);
+var _reactNativeModalDropdown2 = babelHelpers.interopRequireDefault(_reactNativeModalDropdown);
 
 var _reactRedux = require("react-redux");
 
@@ -30,6 +30,9 @@ var _styles = require("./styles");
 
 var _styles2 = babelHelpers.interopRequireDefault(_styles);
 
+var DEMO_OPTIONS_1 = ['option 1', 'option 2', 'option 3', 'option 4', 'option 5', 'option 6', 'option 7', 'option 8', 'option 9'];
+var DEMO_OPTIONS_2 = [{ "name": "Rex", "age": 30 }, { "name": "Mary", "age": 25 }, { "name": "John", "age": 41 }, { "name": "Jim", "age": 22 }, { "name": "Susan", "age": 52 }, { "name": "Brent", "age": 33 }, { "name": "Alex", "age": 16 }, { "name": "Ian", "age": 20 }, { "name": "Phil", "age": 24 }];
+
 var Survey = function (_Component) {
   babelHelpers.inherits(Survey, _Component);
 
@@ -39,11 +42,42 @@ var Survey = function (_Component) {
     var _this = babelHelpers.possibleConstructorReturn(this, (Survey.__proto__ || Object.getPrototypeOf(Survey)).call(this, props));
 
     _this.state = { text: 'Useless Placeholder',
-      dropdownSelection: '-- Choose --' };
+      dropdownSelection: '-- Choose --'
+    };
     return _this;
   }
 
   babelHelpers.createClass(Survey, [{
+    key: "_dropdown_2_renderRow",
+    value: function _dropdown_2_renderRow(rowData, rowID, highlighted) {
+      var icon = highlighted ? require('../../../images/heart.png') : require('../../../images/flower.png');
+      var evenRow = rowID % 2;
+      return _react2.default.createElement(
+        _reactNative.TouchableHighlight,
+        { underlayColor: "cornflowerblue" },
+        _react2.default.createElement(
+          _nativeBase.View,
+          { style: [_styles2.default.dropdown_2_row, { backgroundColor: evenRow ? 'lemonchiffon' : 'white' }] },
+          _react2.default.createElement(_reactNative.Image, { style: _styles2.default.dropdown_2_image,
+            mode: "stretch",
+            source: icon }),
+          _react2.default.createElement(
+            _nativeBase.Text,
+            { style: [_styles2.default.dropdown_2_row_text, highlighted && { color: 'mediumaquamarine' }] },
+            rowData.name + " (" + rowData.age + ")"
+          )
+        )
+      );
+    }
+  }, {
+    key: "_dropdown_2_renderSeparator",
+    value: function _dropdown_2_renderSeparator(sectionID, rowID, adjacentRowHighlighted) {
+      if (rowID == DEMO_OPTIONS_1.length - 1) return;
+      var key = "spr_" + rowID;
+      return _react2.default.createElement(_nativeBase.View, { style: _styles2.default.dropdown_2_separator,
+        key: key });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -65,137 +99,73 @@ var Survey = function (_Component) {
             _react2.default.createElement(
               _nativeBase.View,
               { style: _styles2.default.bg },
+              _react2.default.createElement(_reactNative.TextInput, {
+                style: { height: 40, borderColor: 'gray', borderWidth: 1 },
+                onChangeText: function onChangeText(text) {
+                  return _this2.setState({ text: text });
+                },
+                value: this.state.text }),
               _react2.default.createElement(
-                _reactNativeMenu.MenuContext,
-                { style: { flex: 1 }, ref: "MenuContext" },
-                _react2.default.createElement(_reactNative.TextInput, {
-                  style: { height: 40, borderColor: 'gray', borderWidth: 1 },
-                  onChangeText: function onChangeText(text) {
-                    return _this2.setState({ text: text });
-                  },
-                  value: this.state.text }),
-                _react2.default.createElement(
-                  _reactNativeMenu2.default,
-                  { style: _styles2.default.dropdown, onSelect: function onSelect(value) {
-                      return _this2.setState({ dropdownSelection: value });
-                    } },
-                  _react2.default.createElement(
-                    _reactNativeMenu.MenuTrigger,
-                    null,
+                _nativeBase.Text,
+                null,
+                "Options"
+              ),
+              _react2.default.createElement(
+                _nativeBase.View,
+                null,
+                _react2.default.createElement(_reactNativeModalDropdown2.default, { style: _styles2.default.dropdown_2,
+                  textStyle: _styles2.default.dropdown_2_text,
+                  dropdownStyle: _styles2.default.dropdown_2_dropdown,
+                  options: DEMO_OPTIONS_2,
+                  renderRow: this._dropdown_2_renderRow.bind(this),
+                  renderSeparator: function renderSeparator(sectionID, rowID, adjacentRowHighlighted) {
+                    return _this2._dropdown_2_renderSeparator(sectionID, rowID, adjacentRowHighlighted);
+                  } })
+              ),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Options"
+              ),
+              _react2.default.createElement(
+                _reactNativeEasyGrid.Grid,
+                { style: _styles2.default.mt },
+                this.props.list.map(function (item, i) {
+                  return _react2.default.createElement(
+                    _reactNativeEasyGrid.Row,
+                    { style: _styles2.default.row, key: i },
                     _react2.default.createElement(
                       _nativeBase.Text,
-                      null,
-                      this.state.dropdownSelection
+                      { style: _styles2.default.text },
+                      item
                     )
-                  ),
-                  _react2.default.createElement(
-                    _reactNativeMenu.MenuOptions,
-                    { optionsContainerStyle: _styles2.default.dropdownOptions,
-                      renderOptionsContainer: function renderOptionsContainer(options) {
-                        return _react2.default.createElement(
-                          _reactNative.ScrollView,
-                          null,
-                          _react2.default.createElement(
-                            _nativeBase.Text,
-                            null,
-                            "CHOOSE SOMETHING...."
-                          ),
-                          options
-                        );
-                      } },
-                    _react2.default.createElement(
-                      _reactNativeMenu.MenuOption,
-                      { value: "Option One" },
-                      _react2.default.createElement(
-                        _nativeBase.Text,
-                        null,
-                        "Option One"
-                      )
-                    ),
-                    _react2.default.createElement(
-                      _reactNativeMenu.MenuOption,
-                      { value: "Option Two" },
-                      _react2.default.createElement(
-                        _nativeBase.Text,
-                        null,
-                        "Option Two"
-                      )
-                    ),
-                    _react2.default.createElement(
-                      _reactNativeMenu.MenuOption,
-                      { value: "Option Three" },
-                      _react2.default.createElement(
-                        _nativeBase.Text,
-                        null,
-                        "Option Three"
-                      )
-                    ),
-                    _react2.default.createElement(
-                      _reactNativeMenu.MenuOption,
-                      { value: "Option Four" },
-                      _react2.default.createElement(
-                        _nativeBase.Text,
-                        null,
-                        "Option Four"
-                      )
-                    ),
-                    _react2.default.createElement(
-                      _reactNativeMenu.MenuOption,
-                      { value: "Option Five" },
-                      _react2.default.createElement(
-                        _nativeBase.Text,
-                        null,
-                        "Option Five"
-                      )
-                    )
-                  )
-                ),
-                _react2.default.createElement(_reactNative.TextInput, {
-                  style: { height: 40, borderColor: 'gray', borderWidth: 1 },
-                  onChangeText: function onChangeText(text) {
-                    return _this2.setState({ text: text });
-                  },
-                  value: this.state.text }),
+                  );
+                })
+              ),
+              _react2.default.createElement(
+                _nativeBase.Button,
+                {
+                  style: _styles2.default.btn,
+                  onPress: function onPress() {
+                    return _this2.props.navigation.navigate("Home");
+                  } },
                 _react2.default.createElement(
-                  _reactNativeEasyGrid.Grid,
-                  { style: _styles2.default.mt },
-                  this.props.list.map(function (item, i) {
-                    return _react2.default.createElement(
-                      _reactNativeEasyGrid.Row,
-                      { style: _styles2.default.row, key: i },
-                      _react2.default.createElement(
-                        _nativeBase.Text,
-                        { style: _styles2.default.text },
-                        item
-                      )
-                    );
-                  })
-                ),
+                  _nativeBase.Text,
+                  null,
+                  "Clear"
+                )
+              ),
+              _react2.default.createElement(
+                _nativeBase.Button,
+                {
+                  style: _styles2.default.btn,
+                  onPress: function onPress() {
+                    return _this2.props.navigation.navigate("Home");
+                  } },
                 _react2.default.createElement(
-                  _nativeBase.Button,
-                  {
-                    style: _styles2.default.btn,
-                    onPress: function onPress() {
-                      return _this2.props.navigation.navigate("Home");
-                    } },
-                  _react2.default.createElement(
-                    _nativeBase.Text,
-                    null,
-                    "Clear"
-                  )
-                ),
-                _react2.default.createElement(
-                  _nativeBase.Button,
-                  {
-                    style: _styles2.default.btn,
-                    onPress: function onPress() {
-                      return _this2.props.navigation.navigate("Home");
-                    } },
-                  _react2.default.createElement(
-                    _nativeBase.Text,
-                    null,
-                    "Cancel"
-                  )
+                  _nativeBase.Text,
+                  null,
+                  "Cancel"
                 )
               )
             )

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { TouchableOpacity, DatePickerIOS, TextInput, AppRegistry,  ScrollView,
-  StyleSheet} from "react-native";
-import Menu, { MenuContext, MenuOptions, MenuOption, MenuTrigger } from 'react-native-menu';
+  StyleSheet, TouchableHighlight, Image} from "react-native";
+import ModalDropdown from 'react-native-modal-dropdown';
 import { connect } from "react-redux";
 import BlankPage2 from "../blankPage2";
 import { DrawerNavigator, NavigationActions } from "react-navigation";
@@ -22,16 +22,53 @@ import { Grid, Row } from "react-native-easy-grid";
 import { setIndex } from "../../actions/list";
 import styles from "./styles";
 
+const DEMO_OPTIONS_1 = ['option 1', 'option 2', 'option 3', 'option 4', 'option 5', 'option 6', 'option 7', 'option 8', 'option 9'];
+const DEMO_OPTIONS_2 = [
+  {"name": "Rex", "age": 30},
+  {"name": "Mary", "age": 25},
+  {"name": "John", "age": 41},
+  {"name": "Jim", "age": 22},
+  {"name": "Susan", "age": 52},
+  {"name": "Brent", "age": 33},
+  {"name": "Alex", "age": 16},
+  {"name": "Ian", "age": 20},
+  {"name": "Phil", "age": 24},
+  ];
 
 
 class Survey extends Component {
   constructor(props) {
     super(props);
     this.state = { text: 'Useless Placeholder',
-                    dropdownSelection: '-- Choose --'  };
+                    dropdownSelection: '-- Choose --'
+                  };
   }
   static navigationOptions = {
     header: null
+  };
+
+  _dropdown_2_renderRow(rowData, rowID, highlighted) {
+    let icon = highlighted ? require('../../../images/heart.png') : require('../../../images/flower.png');
+    let evenRow = rowID % 2;
+    return (
+      <TouchableHighlight underlayColor='cornflowerblue'>
+        <View style={[styles.dropdown_2_row, {backgroundColor: evenRow ? 'lemonchiffon' : 'white'}]}>
+          <Image style={styles.dropdown_2_image}
+                 mode='stretch'
+                 source={icon}/>
+          <Text style={[styles.dropdown_2_row_text, highlighted && {color: 'mediumaquamarine'}]}>
+            {`${rowData.name} (${rowData.age})`}
+          </Text>
+        </View>
+      </TouchableHighlight>
+    );
+  };
+
+  _dropdown_2_renderSeparator(sectionID, rowID, adjacentRowHighlighted) {
+    if (rowID == DEMO_OPTIONS_1.length - 1) return;
+    let key = `spr_${rowID}`;
+    return (<View style={styles.dropdown_2_separator}
+                  key={key}/>);
   };
 
 
@@ -77,46 +114,27 @@ class Survey extends Component {
         <View style={styles.container}>
           <Content>
             <View style={styles.bg}>
-              <MenuContext style={{ flex: 1 }} ref="MenuContext">
+
               { /* You need to place a MenuContext somewhere in your application, usually at the root.
                   Menus will open within the context, and only one menu can open at a time per context.*/}
+
+
                 <TextInput
         style={{height: 40, borderColor: 'gray', borderWidth: 1}}
         onChangeText={(text) => this.setState({text})}
         value={this.state.text}/>
 
+                <Text>Options</Text>
+                <View>
+                <ModalDropdown style={styles.dropdown_2}
+                           textStyle={styles.dropdown_2_text}
+                           dropdownStyle={styles.dropdown_2_dropdown}
+                           options={DEMO_OPTIONS_2}
+                           renderRow={this._dropdown_2_renderRow.bind(this)}
+                           renderSeparator={(sectionID, rowID, adjacentRowHighlighted) => this._dropdown_2_renderSeparator(sectionID, rowID, adjacentRowHighlighted)}/>
+                  </View>
+            <Text>Options</Text>
 
-
-             <Menu style={styles.dropdown} onSelect={(value) => this.setState({ dropdownSelection: value })}>
-            <MenuTrigger>
-              <Text>{this.state.dropdownSelection}</Text>
-            </MenuTrigger>
-            <MenuOptions optionsContainerStyle={styles.dropdownOptions}
-                         renderOptionsContainer={(options) => <ScrollView><Text>CHOOSE SOMETHING....</Text>{options}</ScrollView>}>
-              <MenuOption value="Option One">
-                <Text>Option One</Text>
-              </MenuOption>
-              <MenuOption value="Option Two">
-                <Text>Option Two</Text>
-              </MenuOption>
-              <MenuOption value="Option Three">
-                <Text>Option Three</Text>
-              </MenuOption>
-              <MenuOption value="Option Four">
-                <Text>Option Four</Text>
-              </MenuOption>
-              <MenuOption value="Option Five">
-                <Text>Option Five</Text>
-              </MenuOption>
-            </MenuOptions>
-          </Menu>
-
-
-
-              <TextInput
-        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-        onChangeText={(text) => this.setState({text})}
-        value={this.state.text}/>
 
 
               {<Grid style={styles.mt}>
@@ -136,7 +154,11 @@ class Survey extends Component {
                 onPress={() => this.props.navigation.navigate("Home")}>
                       <Text>Cancel</Text>
                </Button>
-               </MenuContext>
+
+
+
+
+
              </View>
           </Content>
         </View>
