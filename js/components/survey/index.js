@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { TouchableOpacity, DatePickerIOS, TextInput, AppRegistry,  ScrollView,
   StyleSheet, TouchableHighlight, Image} from "react-native";
 import ModalDropdown from 'react-native-modal-dropdown';
+import DatePicker from 'react-native-datepicker'
 import { connect } from "react-redux";
 import BlankPage2 from "../blankPage2";
 import { DrawerNavigator, NavigationActions } from "react-navigation";
@@ -31,6 +32,7 @@ class Survey extends Component {
     this.state = {  text1: 'Please Describe',
                     text2: 'Please Describe',
                     dropdownSelection: '-- Choose --',
+                    date:"2016-05-15"
                   };
     this.baseState = this.state;
     //this.resetForm = this.resetForm.bind(this);
@@ -79,6 +81,30 @@ class Survey extends Component {
 
                   <Text>Date</Text>
 
+                  <DatePicker
+                  style={{width: 200}}
+                  date={this.state.date}
+                  mode="date"
+                  placeholder="select date"
+                  format="YYYY-MM-DD"
+                  minDate="2016-05-01"
+                  maxDate="2016-06-01"
+                  confirmBtnText="Confirm"
+                  cancelBtnText="Cancel"
+                  customStyles={{
+                    dateIcon: {
+                      position: 'absolute',
+                      left: 0,
+                      top: 4,
+                      marginLeft: 0
+                    },
+                    dateInput: {
+                      marginLeft: 36
+                    }
+                      // ... You can check the source to find the other keys.
+                    }}
+                    onDateChange={(date) => {this.setState({date: date})}}/>
+
                   <Text>Procedure Group</Text>
 
                   <ModalDropdown ref={el => this._dropdown_3 = el}
@@ -88,6 +114,8 @@ class Survey extends Component {
                   dropdownTextHighlightStyle={styles.dropdown_3_dropdownTextHighlightStyle}/>
 
                   <Text>Diagnosis</Text>
+
+
 
                   <Text>Case Location</Text>
 
@@ -144,15 +172,6 @@ class Survey extends Component {
                   value={this.state.text2}/>
 
 
-              {/*<Grid style={styles.mt}>
-                {this.props.list.map((item, i) => (
-                  <Row style ={styles.row} key={i}>
-                    <Text style={styles.text}>{item}</Text>
-                  </Row>
-                ))}
-              </Grid> */}
-
-
               <Button
                 style={styles.btn}
                 onPress={this.resetForm}>
@@ -186,7 +205,6 @@ function bindAction(dispatch) {
 //This const creates the list for the items...
 const mapStateToProps = state => ({
   name: state.user.name,
-  list: ["Student","Rotation", "Date Performed", "Prodedure Group","Prodedure","Diagnosis Group","Diagnosis", "Case Location","Role in Case", "Supervisor", "Patient Type", "Student Comments", "Alternate Experience", "Description of Alternate Experience"]
 });
 
 const SurveySwagger = connect(mapStateToProps, bindAction)(Survey);

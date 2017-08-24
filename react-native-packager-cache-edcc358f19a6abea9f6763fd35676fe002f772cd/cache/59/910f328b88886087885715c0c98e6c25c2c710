@@ -12,6 +12,10 @@ var _reactNativeModalDropdown = require("react-native-modal-dropdown");
 
 var _reactNativeModalDropdown2 = babelHelpers.interopRequireDefault(_reactNativeModalDropdown);
 
+var _reactNativeDatepicker = require("react-native-datepicker");
+
+var _reactNativeDatepicker2 = babelHelpers.interopRequireDefault(_reactNativeDatepicker);
+
 var _reactRedux = require("react-redux");
 
 var _blankPage = require("../blankPage2");
@@ -42,7 +46,8 @@ var Survey = function (_Component) {
 
     _this.state = { text1: 'Please Describe',
       text2: 'Please Describe',
-      dropdownSelection: '-- Choose --'
+      dropdownSelection: '-- Choose --',
+      date: "2016-05-15"
     };
     _this.baseState = _this.state;
     return _this;
@@ -108,6 +113,30 @@ var Survey = function (_Component) {
                 null,
                 "Date"
               ),
+              _react2.default.createElement(_reactNativeDatepicker2.default, {
+                style: { width: 200 },
+                date: this.state.date,
+                mode: "date",
+                placeholder: "select date",
+                format: "YYYY-MM-DD",
+                minDate: "2016-05-01",
+                maxDate: "2016-06-01",
+                confirmBtnText: "Confirm",
+                cancelBtnText: "Cancel",
+                customStyles: {
+                  dateIcon: {
+                    position: 'absolute',
+                    left: 0,
+                    top: 4,
+                    marginLeft: 0
+                  },
+                  dateInput: {
+                    marginLeft: 36
+                  }
+                },
+                onDateChange: function onDateChange(date) {
+                  _this2.setState({ date: date });
+                } }),
               _react2.default.createElement(
                 _nativeBase.Text,
                 null,
