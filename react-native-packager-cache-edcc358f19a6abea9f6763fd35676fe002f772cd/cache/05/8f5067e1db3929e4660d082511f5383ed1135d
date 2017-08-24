@@ -97,11 +97,12 @@ var Login = function (_Component) {
         _nativeBase.Item,
         { error: hasError },
         _react2.default.createElement(_nativeBase.Icon, { active: true, name: input.name === "email" ? "person" : "unlock" }),
-        _react2.default.createElement(_nativeBase.Input, {
+        _react2.default.createElement(_nativeBase.Input, babelHelpers.extends({
           placeholder: input.name === "email" ? "EMAIL" : "PASSWORD",
           onChangeText: function onChangeText(username) {
             return _this2.setState({ username: username });
-          } }),
+          }
+        }, input)),
         hasError ? _react2.default.createElement(
           _nativeBase.Item,
           { style: { borderColor: "transparent" } },
@@ -120,7 +121,8 @@ var Login = function (_Component) {
       var _this3 = this;
 
       validate;
-      console.log(this.props.valid);
+      console.log("hit nav button");
+
       if (this.props.valid && this.state.username) {
         console.log("Login successful");
         return function () {
@@ -153,9 +155,7 @@ var Login = function (_Component) {
               _react2.default.createElement(
                 _nativeBase.View,
                 { style: _styles2.default.bg },
-                _react2.default.createElement(_reduxForm.Field, { name: "email", component: this.renderInput, onChangeText: function onChangeText(username) {
-                    return _this4.setState({ username: username });
-                  } }),
+                _react2.default.createElement(_reduxForm.Field, { name: "email", component: this.renderInput }),
                 _react2.default.createElement(_reduxForm.Field, { name: "password", component: this.renderInput }),
                 _react2.default.createElement(
                   _nativeBase.Button,

@@ -85,7 +85,9 @@ class Login extends Component {
         <Icon active name={input.name === "email" ? "person" : "unlock"} />
         <Input
           placeholder={input.name === "email" ? "EMAIL" : "PASSWORD"}
-          onChangeText={(username) => this.setState({username})}/>
+          onChangeText={(username) => this.setState({username})}
+          {...input}
+        />
         {hasError
           ? <Item style={{ borderColor: "transparent" }}>
               <Icon active style={{ color: "red", marginTop: 5 }} name="bug" />
@@ -98,7 +100,9 @@ class Login extends Component {
 
   loginButtonLogic() {
     validate
-    console.log(this.props.valid);
+    console.log("hit nav button");
+
+
     if (this.props.valid && this.state.username) {
       console.log("Login successful");
       return () => this.props.navigation.navigate("Home")
@@ -116,7 +120,7 @@ class Login extends Component {
             <Image source={background} style={styles.shadow}>
               <View style={styles.bg}>
 
-                <Field name="email" component={this.renderInput} onChangeText={(username) => this.setState({username})} />
+                <Field name="email" component={this.renderInput} />
                 <Field name="password" component={this.renderInput} />
 
                 <Button

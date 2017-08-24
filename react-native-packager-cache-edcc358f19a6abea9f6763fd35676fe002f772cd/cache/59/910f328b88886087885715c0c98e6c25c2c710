@@ -40,13 +40,11 @@ var Survey = function (_Component) {
 
     var _this = babelHelpers.possibleConstructorReturn(this, (Survey.__proto__ || Object.getPrototypeOf(Survey)).call(this, props));
 
-    _this.state = { text1: 'Useless Placeholder',
-      text2: 'Useless Placeholder',
-      dropdownSelection: '-- Choose --',
-      inputVal: props.inputValue
+    _this.state = { text1: 'Please Describe',
+      text2: 'Please Describe',
+      dropdownSelection: '-- Choose --'
     };
     _this.baseState = _this.state;
-    _this.resetForm = _this.resetForm.bind(_this);
     return _this;
   }
 
@@ -63,9 +61,6 @@ var Survey = function (_Component) {
       console.log('button working?');
       console.log(this.baseState);
       console.log(this.state);
-      this.setState(this.baseState);
-      this.forceUpdate();
-      return this.forceUpdate();
     }
   }, {
     key: "render",

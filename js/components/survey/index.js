@@ -31,10 +31,9 @@ class Survey extends Component {
     this.state = {  text1: 'Please Describe',
                     text2: 'Please Describe',
                     dropdownSelection: '-- Choose --',
-                    inputVal: props.inputValue
                   };
     this.baseState = this.state;
-    this.resetForm = this.resetForm.bind(this);
+    //this.resetForm = this.resetForm.bind(this);
   }
 
   getState() {
@@ -46,9 +45,8 @@ class Survey extends Component {
     console.log('button working?');
     console.log(this.baseState);
     console.log(this.state);
-    this.setState(this.baseState);
-    this.forceUpdate();
-    return this.forceUpdate();
+    //this.setState(this.baseState);
+    //return this.forceUpdate();
   }
 
   static navigationOptions = {
