@@ -97,12 +97,11 @@ var Login = function (_Component) {
         _nativeBase.Item,
         { error: hasError },
         _react2.default.createElement(_nativeBase.Icon, { active: true, name: input.name === "email" ? "person" : "unlock" }),
-        _react2.default.createElement(_nativeBase.Input, babelHelpers.extends({
+        _react2.default.createElement(_nativeBase.Input, {
           placeholder: input.name === "email" ? "EMAIL" : "PASSWORD",
           onChangeText: function onChangeText(username) {
             return _this2.setState({ username: username });
-          }
-        }, input)),
+          } }),
         hasError ? _react2.default.createElement(
           _nativeBase.Item,
           { style: { borderColor: "transparent" } },
@@ -121,14 +120,7 @@ var Login = function (_Component) {
       var _this3 = this;
 
       validate;
-      console.log("hit nav button");
-      console.log(this.state);
       console.log(this.props.valid);
-      handleSome = function handleSome() {
-        console.log(_this3.state.username);
-      };
-      handleSome();
-
       if (this.props.valid && this.state.username) {
         console.log("Login successful");
         return function () {

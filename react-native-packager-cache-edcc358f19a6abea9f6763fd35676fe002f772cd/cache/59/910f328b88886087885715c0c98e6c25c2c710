@@ -31,7 +31,6 @@ var _styles = require("./styles");
 var _styles2 = babelHelpers.interopRequireDefault(_styles);
 
 var DEMO_OPTIONS_1 = ['option 1', 'option 2', 'option 3', 'option 4', 'option 5', 'option 6', 'option 7', 'option 8', 'option 9'];
-var DEMO_OPTIONS_2 = [{ "name": "Rex", "age": 30 }, { "name": "Mary", "age": 25 }, { "name": "John", "age": 41 }, { "name": "Jim", "age": 22 }, { "name": "Susan", "age": 52 }, { "name": "Brent", "age": 33 }, { "name": "Alex", "age": 16 }, { "name": "Ian", "age": 20 }, { "name": "Phil", "age": 24 }];
 
 var Survey = function (_Component) {
   babelHelpers.inherits(Survey, _Component);
@@ -41,52 +40,38 @@ var Survey = function (_Component) {
 
     var _this = babelHelpers.possibleConstructorReturn(this, (Survey.__proto__ || Object.getPrototypeOf(Survey)).call(this, props));
 
-    _this.state = { text: 'Useless Placeholder',
-      dropdownSelection: '-- Choose --'
+    _this.state = { text1: 'Useless Placeholder',
+      text2: 'Useless Placeholder',
+      dropdownSelection: '-- Choose --',
+      inputVal: props.inputValue
     };
+    _this.baseState = _this.state;
+    _this.resetForm = _this.resetForm.bind(_this);
     return _this;
   }
 
   babelHelpers.createClass(Survey, [{
-    key: "_dropdown_2_renderRow",
-    value: function _dropdown_2_renderRow(rowData, rowID, highlighted) {
-      var icon = highlighted ? require('../../../images/heart.png') : require('../../../images/flower.png');
-      var evenRow = rowID % 2;
-      return _react2.default.createElement(
-        _reactNative.TouchableHighlight,
-        { underlayColor: "cornflowerblue" },
-        _react2.default.createElement(
-          _nativeBase.View,
-          { style: [_styles2.default.dropdown_2_row, { backgroundColor: evenRow ? 'lemonchiffon' : 'white' }] },
-          _react2.default.createElement(_reactNative.Image, { style: _styles2.default.dropdown_2_image,
-            mode: "stretch",
-            source: icon }),
-          _react2.default.createElement(
-            _nativeBase.Text,
-            { style: [_styles2.default.dropdown_2_row_text, highlighted && { color: 'mediumaquamarine' }] },
-            rowData.name + " (" + rowData.age + ")"
-          )
-        )
-      );
+    key: "getState",
+    value: function getState() {
+      return {
+        number: 0
+      };
     }
   }, {
-    key: "_dropdown_2_renderSeparator",
-    value: function _dropdown_2_renderSeparator(sectionID, rowID, adjacentRowHighlighted) {
-      if (rowID == DEMO_OPTIONS_1.length - 1) return;
-      var key = "spr_" + rowID;
-      return _react2.default.createElement(_nativeBase.View, { style: _styles2.default.dropdown_2_separator,
-        key: key });
+    key: "resetForm",
+    value: function resetForm() {
+      console.log('button working?');
+      console.log(this.baseState);
+      console.log(this.state);
+      this.setState(this.baseState);
+      this.forceUpdate();
+      return this.forceUpdate();
     }
   }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      console.log(DrawNav, "786785786");
-      console.log('PROPS');
-      console.log(this.props);
-      console.log('STATE');
-      console.log(this.state);
       return _react2.default.createElement(
         _nativeBase.Container,
         null,
@@ -99,56 +84,139 @@ var Survey = function (_Component) {
             _react2.default.createElement(
               _nativeBase.View,
               { style: _styles2.default.bg },
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Student"
+              ),
+              _react2.default.createElement(_reactNativeModalDropdown2.default, { ref: function ref(el) {
+                  return _this2._dropdown_3 = el;
+                },
+                style: _styles2.default.dropdown_3,
+                options: DEMO_OPTIONS_1,
+                dropdownTextStyle: _styles2.default.dropdown_3_dropdownTextStyle,
+                dropdownTextHighlightStyle: _styles2.default.dropdown_3_dropdownTextHighlightStyle }),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Rotation"
+              ),
+              _react2.default.createElement(_reactNativeModalDropdown2.default, { ref: function ref(el) {
+                  return _this2._dropdown_3 = el;
+                },
+                style: _styles2.default.dropdown_3,
+                options: DEMO_OPTIONS_1,
+                dropdownTextStyle: _styles2.default.dropdown_3_dropdownTextStyle,
+                dropdownTextHighlightStyle: _styles2.default.dropdown_3_dropdownTextHighlightStyle }),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Date"
+              ),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Procedure Group"
+              ),
+              _react2.default.createElement(_reactNativeModalDropdown2.default, { ref: function ref(el) {
+                  return _this2._dropdown_3 = el;
+                },
+                style: _styles2.default.dropdown_3,
+                options: DEMO_OPTIONS_1,
+                dropdownTextStyle: _styles2.default.dropdown_3_dropdownTextStyle,
+                dropdownTextHighlightStyle: _styles2.default.dropdown_3_dropdownTextHighlightStyle }),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Diagnosis"
+              ),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Case Location"
+              ),
+              _react2.default.createElement(_reactNativeModalDropdown2.default, { ref: function ref(el) {
+                  return _this2._dropdown_3 = el;
+                },
+                style: _styles2.default.dropdown_3,
+                options: DEMO_OPTIONS_1,
+                dropdownTextStyle: _styles2.default.dropdown_3_dropdownTextStyle,
+                dropdownTextHighlightStyle: _styles2.default.dropdown_3_dropdownTextHighlightStyle }),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Role in Case"
+              ),
+              _react2.default.createElement(_reactNativeModalDropdown2.default, { ref: function ref(el) {
+                  return _this2._dropdown_3 = el;
+                },
+                style: _styles2.default.dropdown_3,
+                options: DEMO_OPTIONS_1,
+                dropdownTextStyle: _styles2.default.dropdown_3_dropdownTextStyle,
+                dropdownTextHighlightStyle: _styles2.default.dropdown_3_dropdownTextHighlightStyle }),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Supervisor"
+              ),
+              _react2.default.createElement(_reactNativeModalDropdown2.default, { ref: function ref(el) {
+                  return _this2._dropdown_3 = el;
+                },
+                style: _styles2.default.dropdown_3,
+                options: DEMO_OPTIONS_1,
+                dropdownTextStyle: _styles2.default.dropdown_3_dropdownTextStyle,
+                dropdownTextHighlightStyle: _styles2.default.dropdown_3_dropdownTextHighlightStyle }),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Patient Type"
+              ),
+              _react2.default.createElement(_reactNativeModalDropdown2.default, { ref: function ref(el) {
+                  return _this2._dropdown_3 = el;
+                },
+                style: _styles2.default.dropdown_3,
+                options: DEMO_OPTIONS_1,
+                dropdownTextStyle: _styles2.default.dropdown_3_dropdownTextStyle,
+                dropdownTextHighlightStyle: _styles2.default.dropdown_3_dropdownTextHighlightStyle }),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Student Comments"
+              ),
               _react2.default.createElement(_reactNative.TextInput, {
                 style: { height: 40, borderColor: 'gray', borderWidth: 1 },
-                onChangeText: function onChangeText(text) {
-                  return _this2.setState({ text: text });
+                onChangeText: function onChangeText(text1) {
+                  return _this2.setState({ text1: text1 });
                 },
-                value: this.state.text }),
+                value: this.state.text1 }),
               _react2.default.createElement(
                 _nativeBase.Text,
                 null,
-                "Options"
+                "Alternate Experience"
               ),
-              _react2.default.createElement(
-                _nativeBase.View,
-                null,
-                _react2.default.createElement(_reactNativeModalDropdown2.default, { style: _styles2.default.dropdown_2,
-                  textStyle: _styles2.default.dropdown_2_text,
-                  dropdownStyle: _styles2.default.dropdown_2_dropdown,
-                  options: DEMO_OPTIONS_2,
-                  renderRow: this._dropdown_2_renderRow.bind(this),
-                  renderSeparator: function renderSeparator(sectionID, rowID, adjacentRowHighlighted) {
-                    return _this2._dropdown_2_renderSeparator(sectionID, rowID, adjacentRowHighlighted);
-                  } })
-              ),
+              _react2.default.createElement(_reactNativeModalDropdown2.default, { ref: function ref(el) {
+                  return _this2._dropdown_3 = el;
+                },
+                style: _styles2.default.dropdown_3,
+                options: DEMO_OPTIONS_1,
+                dropdownTextStyle: _styles2.default.dropdown_3_dropdownTextStyle,
+                dropdownTextHighlightStyle: _styles2.default.dropdown_3_dropdownTextHighlightStyle }),
               _react2.default.createElement(
                 _nativeBase.Text,
                 null,
-                "Options"
+                "Description of Alternate Experience"
               ),
-              _react2.default.createElement(
-                _reactNativeEasyGrid.Grid,
-                { style: _styles2.default.mt },
-                this.props.list.map(function (item, i) {
-                  return _react2.default.createElement(
-                    _reactNativeEasyGrid.Row,
-                    { style: _styles2.default.row, key: i },
-                    _react2.default.createElement(
-                      _nativeBase.Text,
-                      { style: _styles2.default.text },
-                      item
-                    )
-                  );
-                })
-              ),
+              _react2.default.createElement(_reactNative.TextInput, {
+                style: { height: 40, borderColor: 'gray', borderWidth: 1 },
+                onChangeText: function onChangeText(text2) {
+                  return _this2.setState({ text2: text2 });
+                },
+                value: this.state.text2 }),
               _react2.default.createElement(
                 _nativeBase.Button,
                 {
                   style: _styles2.default.btn,
-                  onPress: function onPress() {
-                    return _this2.props.navigation.navigate("Home");
-                  } },
+                  onPress: this.resetForm },
                 _react2.default.createElement(
                   _nativeBase.Text,
                   null,
@@ -172,6 +240,7 @@ var Survey = function (_Component) {
           )
         )
       );
+      this.baseState = this.state;
     }
   }]);
   return Survey;
