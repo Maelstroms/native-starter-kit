@@ -1,0 +1,306 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require("react");
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactNative = require("react-native");
+
+var _reactNativeModalDropdown = require("react-native-modal-dropdown");
+
+var _reactNativeModalDropdown2 = babelHelpers.interopRequireDefault(_reactNativeModalDropdown);
+
+var _reactNativeDatepicker = require("react-native-datepicker");
+
+var _reactNativeDatepicker2 = babelHelpers.interopRequireDefault(_reactNativeDatepicker);
+
+var _reactRedux = require("react-redux");
+
+var _blankPage = require("../blankPage2");
+
+var _blankPage2 = babelHelpers.interopRequireDefault(_blankPage);
+
+var _reactNavigation = require("react-navigation");
+
+var _nativeBase = require("native-base");
+
+var _reactNativeEasyGrid = require("react-native-easy-grid");
+
+var _list = require("../../actions/list");
+
+var _styles = require("./styles");
+
+var _styles2 = babelHelpers.interopRequireDefault(_styles);
+
+var DEMO_OPTIONS_1 = ['option 1', 'option 2', 'option 3', 'option 4', 'option 5', 'option 6', 'option 7', 'option 8', 'option 9'];
+
+var Survey = function (_Component) {
+  babelHelpers.inherits(Survey, _Component);
+
+  function Survey(props) {
+    babelHelpers.classCallCheck(this, Survey);
+
+    var _this = babelHelpers.possibleConstructorReturn(this, (Survey.__proto__ || Object.getPrototypeOf(Survey)).call(this, props));
+
+    _this.state = { text1: 'Please Describe',
+      text2: 'Please Describe',
+      dropdownSelection: '-- Choose --',
+      date: "2016-05-15"
+    };
+    _this.baseState = _this.state;
+    return _this;
+  }
+
+  babelHelpers.createClass(Survey, [{
+    key: "getState",
+    value: function getState() {
+      return {
+        number: 0
+      };
+    }
+  }, {
+    key: "resetForm",
+    value: function resetForm() {
+      console.log('button working?');
+      console.log(this.baseState);
+      console.log(this.state);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        _nativeBase.Container,
+        null,
+        _react2.default.createElement(
+          _nativeBase.View,
+          { style: _styles2.default.container },
+          _react2.default.createElement(
+            _nativeBase.Content,
+            null,
+            _react2.default.createElement(
+              _nativeBase.View,
+              { style: _styles2.default.bg },
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Student"
+              ),
+              _react2.default.createElement(_reactNativeModalDropdown2.default, { ref: function ref(el) {
+                  return _this2._dropdown_3 = el;
+                },
+                style: _styles2.default.dropdown_3,
+                options: DEMO_OPTIONS_1,
+                dropdownTextStyle: _styles2.default.dropdown_3_dropdownTextStyle,
+                dropdownTextHighlightStyle: _styles2.default.dropdown_3_dropdownTextHighlightStyle }),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Rotation"
+              ),
+              _react2.default.createElement(_reactNativeModalDropdown2.default, { ref: function ref(el) {
+                  return _this2._dropdown_3 = el;
+                },
+                style: _styles2.default.dropdown_3,
+                options: DEMO_OPTIONS_1,
+                dropdownTextStyle: _styles2.default.dropdown_3_dropdownTextStyle,
+                dropdownTextHighlightStyle: _styles2.default.dropdown_3_dropdownTextHighlightStyle }),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Date"
+              ),
+              _react2.default.createElement(_reactNativeDatepicker2.default, {
+                style: { width: 200 },
+                date: this.state.date,
+                mode: "date",
+                placeholder: "select date",
+                format: "YYYY-MM-DD",
+                minDate: "2016-05-01",
+                maxDate: "2016-06-01",
+                confirmBtnText: "Confirm",
+                cancelBtnText: "Cancel",
+                customStyles: {
+                  dateIcon: {
+                    position: 'absolute',
+                    left: 0,
+                    top: 4,
+                    marginLeft: 0
+                  },
+                  dateInput: {
+                    marginLeft: 36
+                  }
+                },
+                onDateChange: function onDateChange(date) {
+                  _this2.setState({ date: date });
+                } }),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Procedure Group"
+              ),
+              _react2.default.createElement(_reactNativeModalDropdown2.default, { ref: function ref(el) {
+                  return _this2._dropdown_3 = el;
+                },
+                style: _styles2.default.dropdown_3,
+                options: DEMO_OPTIONS_1,
+                dropdownTextStyle: _styles2.default.dropdown_3_dropdownTextStyle,
+                dropdownTextHighlightStyle: _styles2.default.dropdown_3_dropdownTextHighlightStyle }),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Diagnosis"
+              ),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Case Location"
+              ),
+              _react2.default.createElement(_reactNativeModalDropdown2.default, { ref: function ref(el) {
+                  return _this2._dropdown_3 = el;
+                },
+                style: _styles2.default.dropdown_3,
+                options: DEMO_OPTIONS_1,
+                dropdownTextStyle: _styles2.default.dropdown_3_dropdownTextStyle,
+                dropdownTextHighlightStyle: _styles2.default.dropdown_3_dropdownTextHighlightStyle }),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Role in Case"
+              ),
+              _react2.default.createElement(_reactNativeModalDropdown2.default, { ref: function ref(el) {
+                  return _this2._dropdown_3 = el;
+                },
+                style: _styles2.default.dropdown_3,
+                options: DEMO_OPTIONS_1,
+                dropdownTextStyle: _styles2.default.dropdown_3_dropdownTextStyle,
+                dropdownTextHighlightStyle: _styles2.default.dropdown_3_dropdownTextHighlightStyle }),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Supervisor"
+              ),
+              _react2.default.createElement(_reactNativeModalDropdown2.default, { ref: function ref(el) {
+                  return _this2._dropdown_3 = el;
+                },
+                style: _styles2.default.dropdown_3,
+                options: DEMO_OPTIONS_1,
+                dropdownTextStyle: _styles2.default.dropdown_3_dropdownTextStyle,
+                dropdownTextHighlightStyle: _styles2.default.dropdown_3_dropdownTextHighlightStyle }),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Patient Type"
+              ),
+              _react2.default.createElement(_reactNativeModalDropdown2.default, { ref: function ref(el) {
+                  return _this2._dropdown_3 = el;
+                },
+                style: _styles2.default.dropdown_3,
+                options: DEMO_OPTIONS_1,
+                dropdownTextStyle: _styles2.default.dropdown_3_dropdownTextStyle,
+                dropdownTextHighlightStyle: _styles2.default.dropdown_3_dropdownTextHighlightStyle }),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Student Comments"
+              ),
+              _react2.default.createElement(_reactNative.TextInput, {
+                style: { height: 40, borderColor: 'gray', borderWidth: 1 },
+                onChangeText: function onChangeText(text1) {
+                  return _this2.setState({ text1: text1 });
+                },
+                value: this.state.text1 }),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Alternate Experience"
+              ),
+              _react2.default.createElement(_reactNativeModalDropdown2.default, { ref: function ref(el) {
+                  return _this2._dropdown_3 = el;
+                },
+                style: _styles2.default.dropdown_3,
+                options: DEMO_OPTIONS_1,
+                dropdownTextStyle: _styles2.default.dropdown_3_dropdownTextStyle,
+                dropdownTextHighlightStyle: _styles2.default.dropdown_3_dropdownTextHighlightStyle }),
+              _react2.default.createElement(
+                _nativeBase.Text,
+                null,
+                "Description of Alternate Experience"
+              ),
+              _react2.default.createElement(_reactNative.TextInput, {
+                style: { height: 40, borderColor: 'gray', borderWidth: 1 },
+                onChangeText: function onChangeText(text2) {
+                  return _this2.setState({ text2: text2 });
+                },
+                value: this.state.text2 }),
+              _react2.default.createElement(
+                _nativeBase.Button,
+                {
+                  style: _styles2.default.btn,
+                  onPress: this.resetForm },
+                _react2.default.createElement(
+                  _nativeBase.Text,
+                  null,
+                  "Clear"
+                )
+              ),
+              _react2.default.createElement(
+                _nativeBase.Button,
+                {
+                  style: _styles2.default.btn,
+                  onPress: function onPress() {
+                    return _this2.props.navigation.navigate("Home");
+                  } },
+                _react2.default.createElement(
+                  _nativeBase.Text,
+                  null,
+                  "Cancel"
+                )
+              )
+            )
+          )
+        )
+      );
+      this.baseState = this.state;
+    }
+  }]);
+  return Survey;
+}(_react.Component);
+
+Survey.navigationOptions = {
+  header: null
+};
+
+
+function bindAction(dispatch) {
+  return {
+    setIndex: function setIndex(index) {
+      return dispatch((0, _list.setIndex)(index));
+    }
+  };
+}
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    name: state.user.name
+  };
+};
+
+var SurveySwagger = (0, _reactRedux.connect)(mapStateToProps, bindAction)(Survey);
+var DrawNav = (0, _reactNavigation.DrawerNavigator)({
+  Survey: { screen: SurveySwagger },
+  BlankPage2: { screen: _blankPage2.default }
+});
+var DrawerNav = null;
+DrawNav.navigationOptions = function (_ref) {
+  var navigation = _ref.navigation;
+
+  DrawerNav = navigation;
+  return {
+    header: null
+  };
+};
+exports.default = DrawNav;

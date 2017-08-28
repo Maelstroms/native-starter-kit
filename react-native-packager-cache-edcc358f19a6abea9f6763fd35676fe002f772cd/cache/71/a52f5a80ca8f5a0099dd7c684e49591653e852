@@ -1,0 +1,33 @@
+module.exports = function (React, ReactNative) {
+  var Animated = ReactNative.Animated;
+
+  var TimerMixin = require('react-timer-mixin');
+
+  var AnimatedOptionsContainer = React.createClass({
+    displayName: 'AnimatedOptionsContainer',
+
+    mixins: [TimerMixin],
+    getInitialState: function getInitialState() {
+      return { scaleAnim: new Animated.Value(0.001) };
+    },
+    componentDidMount: function componentDidMount() {
+      var _this = this;
+
+      this.setTimeout(function () {
+        Animated.timing(_this.state.scaleAnim, {
+          duration: 60,
+          toValue: 1
+        }).start();
+      }, 16);
+    },
+    render: function render() {
+      return React.createElement(
+        Animated.View,
+        { style: [this.props.style, { transform: [{ scale: this.state.scaleAnim }] }] },
+        this.props.children
+      );
+    }
+  });
+
+  return AnimatedOptionsContainer;
+};

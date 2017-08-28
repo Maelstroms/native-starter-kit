@@ -1,0 +1,51 @@
+module.exports = function (React, ReactNative, _ref) {
+  var model = _ref.model;
+  var TouchableWithoutFeedback = ReactNative.TouchableWithoutFeedback,
+      View = ReactNative.View;
+
+
+  var MenuTrigger = React.createClass({
+    displayName: 'MenuTrigger',
+    propTypes: {
+      disabled: React.PropTypes.bool,
+      renderTouchable: React.PropTypes.func
+    },
+    getDefaultProps: function getDefaultProps() {
+      return { disabled: false };
+    },
+
+    contextTypes: {
+      menuController: model.IMenuController,
+      getClosestMenuName: React.PropTypes.func.isRequired
+    },
+    onPress: function onPress() {
+      if (!this.props.disabled) {
+        var _context = this.context,
+            menuController = _context.menuController,
+            getClosestMenuName = _context.getClosestMenuName;
+
+        menuController.toggle(getClosestMenuName());
+      }
+    },
+    render: function render() {
+      if (this.props.renderTouchable) {
+        return React.cloneElement(this.props.renderTouchable(), { onPress: this.onPress }, React.createElement(
+          View,
+          { style: this.props.style },
+          this.props.children
+        ));
+      }
+      return React.createElement(
+        TouchableWithoutFeedback,
+        babelHelpers.extends({ onPress: this.onPress }, this.props),
+        React.createElement(
+          View,
+          { style: this.props.style },
+          this.props.children
+        )
+      );
+    }
+  });
+
+  return MenuTrigger;
+};

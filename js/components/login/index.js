@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Image, TextInput, TouchableOpacity } from "react-native";
-import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import {
   Container,
@@ -55,7 +54,7 @@ const validate = values => {
 
 class Login extends Component {
   static propTypes = {
-    setUser: PropTypes.func
+    setUser: React.PropTypes.func
   };
 
   constructor(props) {

@@ -1,0 +1,217 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require("react");
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactNative = require("react-native");
+
+var _reactRedux = require("react-redux");
+
+var _nativeBase = require("native-base");
+
+var _reduxForm = require("redux-form");
+
+var _user = require("../../actions/user");
+
+var _styles = require("./styles");
+
+var _styles2 = babelHelpers.interopRequireDefault(_styles);
+
+var background = require("../../../images/tourologo.png");
+
+var validate = function validate(values) {
+  var error = {};
+  error.email = "";
+  error.password = "";
+  var ema;
+  var pw;
+  if (values.email === undefined) {
+    ema = "";
+  }
+  if (values.email != undefined) {
+    ema = values.email;
+  }
+  if (values.password === undefined) {
+    pw = "";
+  }
+  if (values.password != undefined) {
+    pw = values.password;
+  }
+  if (ema.length < 8 && ema !== "") {
+    error.email = "too short";
+  }
+  if (!ema.includes("@") && ema !== "") {
+    error.email = "@ not included";
+  }
+  if (pw.length > 12) {
+    error.password = "max 11 characters";
+  }
+  if (pw.length < 5 && pw.length > 0) {
+    error.password = "Weak";
+  }
+  return error;
+};
+
+var Login = function (_Component) {
+  babelHelpers.inherits(Login, _Component);
+
+  function Login(props) {
+    babelHelpers.classCallCheck(this, Login);
+
+    var _this = babelHelpers.possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
+
+    _this.state = {
+      name: ""
+    };
+    _this.renderInput = _this.renderInput.bind(_this);
+    _this.loginButtonLogic = _this.loginButtonLogic.bind(_this);
+    return _this;
+  }
+
+  babelHelpers.createClass(Login, [{
+    key: "setUser",
+    value: function setUser(name) {
+      this.props.setUser(name);
+    }
+  }, {
+    key: "renderInput",
+    value: function renderInput(_ref) {
+      var _this2 = this;
+
+      var input = _ref.input,
+          label = _ref.label,
+          type = _ref.type,
+          _ref$meta = _ref.meta,
+          touched = _ref$meta.touched,
+          error = _ref$meta.error,
+          warning = _ref$meta.warning,
+          inputProps = _ref.inputProps;
+      var hasError = false;
+      if (error != undefined) {
+        hasError = true;
+      }
+      return _react2.default.createElement(
+        _nativeBase.Item,
+        { error: hasError },
+        _react2.default.createElement(_nativeBase.Icon, { active: true, name: input.name === "email" ? "person" : "unlock" }),
+        _react2.default.createElement(_nativeBase.Input, babelHelpers.extends({
+          placeholder: input.name === "email" ? "EMAIL" : "PASSWORD",
+          onChangeText: function onChangeText(username) {
+            return _this2.setState({ username: username });
+          }
+        }, input)),
+        hasError ? _react2.default.createElement(
+          _nativeBase.Item,
+          { style: { borderColor: "transparent" } },
+          _react2.default.createElement(_nativeBase.Icon, { active: true, style: { color: "red", marginTop: 5 }, name: "bug" }),
+          _react2.default.createElement(
+            _nativeBase.Text,
+            { style: { fontSize: 15, color: "red" } },
+            error
+          )
+        ) : _react2.default.createElement(_nativeBase.Text, null)
+      );
+    }
+  }, {
+    key: "loginButtonLogic",
+    value: function loginButtonLogic() {
+      var _this3 = this;
+
+      validate;
+      console.log("hit nav button");
+
+      if (this.props.valid && this.state.username) {
+        console.log("Login successful");
+        return function () {
+          return _this3.props.navigation.navigate("Home");
+        };
+      } else {
+        console.log("Incorrect password");
+        return function () {
+          return _this3.props.navigation.navigate("ForgotPassword");
+        };
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this4 = this;
+
+      return _react2.default.createElement(
+        _nativeBase.Container,
+        null,
+        _react2.default.createElement(
+          _nativeBase.View,
+          { style: _styles2.default.container },
+          _react2.default.createElement(
+            _nativeBase.Content,
+            null,
+            _react2.default.createElement(
+              _reactNative.Image,
+              { source: background, style: _styles2.default.shadow },
+              _react2.default.createElement(
+                _nativeBase.View,
+                { style: _styles2.default.bg },
+                _react2.default.createElement(_reduxForm.Field, { name: "email", component: this.renderInput }),
+                _react2.default.createElement(_reduxForm.Field, { name: "password", component: this.renderInput }),
+                _react2.default.createElement(
+                  _nativeBase.Button,
+                  {
+                    style: _styles2.default.btn,
+                    onPress: this.loginButtonLogic()
+                  },
+                  _react2.default.createElement(
+                    _nativeBase.Text,
+                    null,
+                    "Login"
+                  )
+                ),
+                _react2.default.createElement(
+                  _reactNative.TouchableOpacity,
+                  {
+                    style: _styles2.default.row,
+                    onPress: function onPress() {
+                      return _this4.props.navigation.navigate("ForgotPassword");
+                    }
+                  },
+                  _react2.default.createElement(
+                    _nativeBase.Text,
+                    { style: _styles2.default.text },
+                    "Forgot Password"
+                  )
+                )
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+  return Login;
+}(_react.Component);
+
+Login.propTypes = {
+  setUser: _react2.default.PropTypes.func
+};
+
+
+var LoginSwag = (0, _reduxForm.reduxForm)({
+  form: "test",
+  validate: validate
+}, function bindActions(dispatch) {
+  console.log("LOGIN SWAG");
+
+  return {
+    setUser: function setUser(name) {
+      return dispatch((0, _user.setUser)(name));
+    }
+  };
+})(Login);
+
+LoginSwag.navigationOptions = {
+  header: null
+};
+exports.default = LoginSwag;

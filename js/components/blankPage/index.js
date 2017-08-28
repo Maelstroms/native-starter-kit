@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import PropTypes from 'prop-types';
 import {
   Container,
   Header,
@@ -21,10 +20,10 @@ class BlankPage extends Component {
     header: null
   };
   static propTypes = {
-    name: PropTypes.string,
-    index: PropTypes.number,
-    list: PropTypes.arrayOf(PropTypes.string),
-    openDrawer: PropTypes.func
+    name: React.PropTypes.string,
+    index: React.PropTypes.number,
+    list: React.PropTypes.arrayOf(React.PropTypes.string),
+    openDrawer: React.PropTypes.func
   };
 
   render() {

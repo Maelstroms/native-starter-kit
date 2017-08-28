@@ -1,0 +1,116 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require("react");
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactRedux = require("react-redux");
+
+var _nativeBase = require("native-base");
+
+var _styles = require("./styles");
+
+var _styles2 = babelHelpers.interopRequireDefault(_styles);
+
+var BlankPage = function (_Component) {
+  babelHelpers.inherits(BlankPage, _Component);
+
+  function BlankPage() {
+    babelHelpers.classCallCheck(this, BlankPage);
+    return babelHelpers.possibleConstructorReturn(this, (BlankPage.__proto__ || Object.getPrototypeOf(BlankPage)).apply(this, arguments));
+  }
+
+  babelHelpers.createClass(BlankPage, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          name = _props.name,
+          index = _props.index,
+          list = _props.list;
+
+      console.log(this.props.navigation, "000000000");
+      return _react2.default.createElement(
+        _nativeBase.Container,
+        { style: _styles2.default.container },
+        _react2.default.createElement(
+          _nativeBase.Header,
+          null,
+          _react2.default.createElement(
+            _nativeBase.Left,
+            null,
+            _react2.default.createElement(
+              _nativeBase.Button,
+              { transparent: true, onPress: function onPress() {
+                  return _this2.props.navigation.goBack();
+                } },
+              _react2.default.createElement(_nativeBase.Icon, { name: "ios-arrow-back" })
+            )
+          ),
+          _react2.default.createElement(
+            _nativeBase.Body,
+            null,
+            _react2.default.createElement(
+              _nativeBase.Title,
+              null,
+              name ? this.props.name : "Blank Page"
+            )
+          ),
+          _react2.default.createElement(_nativeBase.Right, null)
+        ),
+        _react2.default.createElement(
+          _nativeBase.Content,
+          { padder: true },
+          _react2.default.createElement(
+            _nativeBase.Text,
+            null,
+            this.props.navigation.state.params.name.item !== undefined ? this.props.navigation.state.params.name.item : "Create Something Awesome . . ."
+          )
+        )
+      );
+    }
+  }]);
+  return BlankPage;
+}(_react.Component);
+
+BlankPage.navigationOptions = {
+  header: null
+};
+BlankPage.propTypes = {
+  name: _react2.default.PropTypes.string,
+  index: _react2.default.PropTypes.number,
+  list: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.string),
+  openDrawer: _react2.default.PropTypes.func
+};
+
+
+function bindAction(dispatch) {
+  return {
+    openDrawer: function (_openDrawer) {
+      function openDrawer() {
+        return _openDrawer.apply(this, arguments);
+      }
+
+      openDrawer.toString = function () {
+        return _openDrawer.toString();
+      };
+
+      return openDrawer;
+    }(function () {
+      return dispatch(openDrawer());
+    })
+  };
+}
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    name: state.user.name,
+    index: state.list.selectedIndex,
+    list: state.list.list
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, bindAction)(BlankPage);

@@ -1,0 +1,21 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments[1];
+
+  if (action.type === _user.SET_USER) {
+    return babelHelpers.extends({}, state, {
+      name: action.payload
+    });
+  }
+  return state;
+};
+
+var _user = require('../actions/user');
+
+var initialState = {
+  name: ''
+};

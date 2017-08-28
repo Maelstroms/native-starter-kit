@@ -1,0 +1,90 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require("react");
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactRedux = require("react-redux");
+
+var _nativeBase = require("native-base");
+
+var BlankPage2 = function (_Component) {
+  babelHelpers.inherits(BlankPage2, _Component);
+
+  function BlankPage2() {
+    babelHelpers.classCallCheck(this, BlankPage2);
+    return babelHelpers.possibleConstructorReturn(this, (BlankPage2.__proto__ || Object.getPrototypeOf(BlankPage2)).apply(this, arguments));
+  }
+
+  babelHelpers.createClass(BlankPage2, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          name = _props.name,
+          index = _props.index,
+          list = _props.list;
+
+      return _react2.default.createElement(
+        _nativeBase.Container,
+        null,
+        _react2.default.createElement(
+          _nativeBase.Header,
+          null,
+          _react2.default.createElement(
+            _nativeBase.Left,
+            null,
+            _react2.default.createElement(
+              _nativeBase.Button,
+              { transparent: true, onPress: function onPress() {
+                  return _this2.props.navigation.goBack();
+                } },
+              _react2.default.createElement(_nativeBase.Icon, { name: "ios-arrow-back" })
+            )
+          ),
+          _react2.default.createElement(
+            _nativeBase.Body,
+            null,
+            _react2.default.createElement(
+              _nativeBase.Title,
+              null,
+              "Blank page"
+            )
+          ),
+          _react2.default.createElement(
+            _nativeBase.Right,
+            null,
+            _react2.default.createElement(
+              _nativeBase.Button,
+              {
+                transparent: true,
+                onPress: function onPress() {
+                  return _this2.props.navigation.navigate("DrawerOpen");
+                }
+              },
+              _react2.default.createElement(_nativeBase.Icon, { name: "ios-menu" })
+            )
+          )
+        ),
+        _react2.default.createElement(
+          _nativeBase.Content,
+          { padder: true },
+          _react2.default.createElement(
+            _nativeBase.Text,
+            null,
+            "Create Something Awesome . . ."
+          )
+        )
+      );
+    }
+  }]);
+  return BlankPage2;
+}(_react.Component);
+
+BlankPage2.navigationOptions = {
+  header: null
+};
+exports.default = BlankPage2;

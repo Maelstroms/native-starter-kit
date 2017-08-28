@@ -26,7 +26,6 @@ export default (variables = variable) => {
     minHeight: 50,
     'NativeBase.Text': {
       color: '#fff',
-      flex: 1,
     },
     'NativeBase.Button': {
       backgroundColor: 'transparent',
