@@ -16,6 +16,10 @@ var _reactNativeDatepicker = require("react-native-datepicker");
 
 var _reactNativeDatepicker2 = babelHelpers.interopRequireDefault(_reactNativeDatepicker);
 
+var _reactNativeMultipleSelectList = require("react-native-multiple-select-list");
+
+var _reactNativeMultipleSelectList2 = babelHelpers.interopRequireDefault(_reactNativeMultipleSelectList);
+
 var _reactRedux = require("react-redux");
 
 var _blankPage = require("../blankPage2");
@@ -35,6 +39,11 @@ var _styles = require("./styles");
 var _styles2 = babelHelpers.interopRequireDefault(_styles);
 
 var DEMO_OPTIONS_1 = ['option 1', 'option 2', 'option 3', 'option 4', 'option 5', 'option 6', 'option 7', 'option 8', 'option 9'];
+var userList = {
+  "123": "Tom",
+  "124": "Michael",
+  "125": "Christin"
+};
 
 var Survey = function (_Component) {
   babelHelpers.inherits(Survey, _Component);
@@ -154,6 +163,25 @@ var Survey = function (_Component) {
                 null,
                 "Diagnosis"
               ),
+              _react2.default.createElement(_reactNativeMultipleSelectList2.default, {
+                options: userList,
+                search: true,
+                multiple: true,
+                placeholder: "Search",
+                placeholderTextColor: '#757575',
+                returnValue: "label",
+                callback: function callback(res) {
+                  console.log(res);
+                },
+                rowBackgroundColor: "#eee",
+                rowHeight: 40,
+                rowRadius: 5,
+                iconColor: "#00a2dd",
+                iconSize: 30,
+                selectedIconName: "ios-checkmark-circle-outline",
+                unselectedIconName: "ios-radio-button-off-outline",
+                scrollViewHeight: 130,
+                selected: [1, 2] }),
               _react2.default.createElement(
                 _nativeBase.Text,
                 null,

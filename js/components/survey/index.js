@@ -3,6 +3,7 @@ import { TouchableOpacity, DatePickerIOS, TextInput, AppRegistry,  ScrollView,
   StyleSheet, TouchableHighlight, Image} from "react-native";
 import ModalDropdown from 'react-native-modal-dropdown';
 import DatePicker from 'react-native-datepicker'
+import CustomMultiPicker from "react-native-multiple-select-list";
 import { connect } from "react-redux";
 import BlankPage2 from "../blankPage2";
 import { DrawerNavigator, NavigationActions } from "react-navigation";
@@ -24,7 +25,11 @@ import { setIndex } from "../../actions/list";
 import styles from "./styles";
 
 const DEMO_OPTIONS_1 = ['option 1', 'option 2', 'option 3', 'option 4', 'option 5', 'option 6', 'option 7', 'option 8', 'option 9'];
-
+const userList = {
+  "123":"Tom",
+  "124":"Michael",
+  "125":"Christin"
+};
 
 class Survey extends Component {
   constructor(props) {
@@ -115,7 +120,23 @@ class Survey extends Component {
 
                   <Text>Diagnosis</Text>
 
-
+                  <CustomMultiPicker
+                  options={userList}
+                  search={true} // should show search bar?
+                  multiple={true} //
+                  placeholder={"Search"}
+                  placeholderTextColor={'#757575'}
+                  returnValue={"label"} // label or value
+                  callback={(res)=>{ console.log(res) }} // callback, array of selected items
+                  rowBackgroundColor={"#eee"}
+                  rowHeight={40}
+                  rowRadius={5}
+                  iconColor={"#00a2dd"}
+                  iconSize={30}
+                  selectedIconName={"ios-checkmark-circle-outline"}
+                  unselectedIconName={"ios-radio-button-off-outline"}
+                  scrollViewHeight={130}
+                  selected={[1,2]} />
 
                   <Text>Case Location</Text>
 
