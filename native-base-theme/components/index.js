@@ -18,7 +18,6 @@ import footerTabTheme from './FooterTab';
 import fabTheme from './Fab';
 import itemTheme from './Item';
 import labelTheme from './Label';
-import inputTheme from './Input';
 import textAreaTheme from './Textarea';
 import textTheme from './Text';
 import toastTheme from './Toast';
@@ -28,6 +27,7 @@ import tabContainerTheme from './TabContainer';
 import viewTheme from './View';
 import tabHeadingTheme from './TabHeading';
 import iconTheme from './Icon';
+import inputTheme from './Input';
 import segmentTheme from './Segment';
 import spinnerTheme from './Spinner';
 import cardItemTheme from './CardItem';
@@ -43,9 +43,6 @@ export default (variables = variable) => {
       flex: 1,
       alignSelf: 'center',
       alignItems: 'flex-start',
-    },
-    'NativeBase.Input': {
-      ...inputTheme(variables),
     },
     'NativeBase.Right': {
       'NativeBase.Button': {
@@ -75,6 +72,10 @@ export default (variables = variable) => {
 
     'NativeBase.InputGroup': {
       ...inputGroupTheme(variables),
+    },
+
+    'NativeBase.Input': {
+      ...inputTheme(variables),
     },
 
     'NativeBase.Badge': {
