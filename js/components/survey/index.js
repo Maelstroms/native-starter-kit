@@ -65,6 +65,38 @@ class Survey extends Component {
     return (
       <Container>
         <View style={styles.container}>
+         <Header>
+          <Left>
+
+            <Button
+              transparent
+              onPress={() => {
+                DrawerNav.dispatch(
+                  NavigationActions.reset({
+                    index: 0,
+                    actions: [NavigationActions.navigate({ routeName: "Home" })]
+                  })
+                );
+                DrawerNav.goBack();
+              }}
+            >
+              <Icon active name="power" />
+            </Button>
+          </Left>
+
+          <Body>
+            <Title>Home</Title>
+          </Body>
+
+          <Right>
+            <Button
+              transparent
+              onPress={() => DrawerNav.navigate("DrawerOpen")}
+            >
+              <Icon active name="menu" />
+            </Button>
+          </Right>
+        </Header>
           <Content>
             <View style={styles.bg}>
 
@@ -193,6 +225,11 @@ class Survey extends Component {
                   value={this.state.text2}/>
 
 
+              <Button
+                style={styles.btn}
+                onPress={() => this.props.navigation.navigate("SubmitSurvey")}>
+                      <Text>Submit</Text>
+               </Button>
               <Button
                 style={styles.btn}
                 onPress={this.resetForm}>

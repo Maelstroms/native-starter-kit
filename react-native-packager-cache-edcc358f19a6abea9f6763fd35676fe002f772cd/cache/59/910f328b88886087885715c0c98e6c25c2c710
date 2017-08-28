@@ -88,6 +88,51 @@ var Survey = function (_Component) {
           _nativeBase.View,
           { style: _styles2.default.container },
           _react2.default.createElement(
+            _nativeBase.Header,
+            null,
+            _react2.default.createElement(
+              _nativeBase.Left,
+              null,
+              _react2.default.createElement(
+                _nativeBase.Button,
+                {
+                  transparent: true,
+                  onPress: function onPress() {
+                    DrawerNav.dispatch(_reactNavigation.NavigationActions.reset({
+                      index: 0,
+                      actions: [_reactNavigation.NavigationActions.navigate({ routeName: "Home" })]
+                    }));
+                    DrawerNav.goBack();
+                  }
+                },
+                _react2.default.createElement(_nativeBase.Icon, { active: true, name: "power" })
+              )
+            ),
+            _react2.default.createElement(
+              _nativeBase.Body,
+              null,
+              _react2.default.createElement(
+                _nativeBase.Title,
+                null,
+                "Home"
+              )
+            ),
+            _react2.default.createElement(
+              _nativeBase.Right,
+              null,
+              _react2.default.createElement(
+                _nativeBase.Button,
+                {
+                  transparent: true,
+                  onPress: function onPress() {
+                    return DrawerNav.navigate("DrawerOpen");
+                  }
+                },
+                _react2.default.createElement(_nativeBase.Icon, { active: true, name: "menu" })
+              )
+            )
+          ),
+          _react2.default.createElement(
             _nativeBase.Content,
             null,
             _react2.default.createElement(
@@ -264,6 +309,19 @@ var Survey = function (_Component) {
                   return _this2.setState({ text2: text2 });
                 },
                 value: this.state.text2 }),
+              _react2.default.createElement(
+                _nativeBase.Button,
+                {
+                  style: _styles2.default.btn,
+                  onPress: function onPress() {
+                    return _this2.props.navigation.navigate("SubmitSurvey");
+                  } },
+                _react2.default.createElement(
+                  _nativeBase.Text,
+                  null,
+                  "Submit"
+                )
+              ),
               _react2.default.createElement(
                 _nativeBase.Button,
                 {

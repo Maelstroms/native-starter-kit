@@ -22,6 +22,10 @@ var _survey = require("../components/survey/");
 
 var _survey2 = babelHelpers.interopRequireDefault(_survey);
 
+var _submit = require("../components/submit/");
+
+var _submit2 = babelHelpers.interopRequireDefault(_submit);
+
 var _blankPage = require("../components/blankPage");
 
 var _blankPage2 = babelHelpers.interopRequireDefault(_blankPage);
@@ -45,5 +49,6 @@ exports.default = StackNav = (0, _reactNavigation.StackNavigator)({
   ForgotPassword: { screen: _forgotPassword2.default },
   Home: { screen: _home2.default },
   Survey: { screen: _survey2.default },
+  SubmitSurvey: { screen: _submit2.default },
   BlankPage: { screen: _blankPage2.default }
 });

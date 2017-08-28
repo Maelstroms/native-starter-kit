@@ -47,6 +47,51 @@ var Home = function (_Component) {
           _nativeBase.View,
           { style: _styles2.default.container },
           _react2.default.createElement(
+            _nativeBase.Header,
+            null,
+            _react2.default.createElement(
+              _nativeBase.Left,
+              null,
+              _react2.default.createElement(
+                _nativeBase.Button,
+                {
+                  transparent: true,
+                  onPress: function onPress() {
+                    DrawerNav.dispatch(_reactNavigation.NavigationActions.reset({
+                      index: 0,
+                      actions: [_reactNavigation.NavigationActions.navigate({ routeName: "Home" })]
+                    }));
+                    DrawerNav.goBack();
+                  }
+                },
+                _react2.default.createElement(_nativeBase.Icon, { active: true, name: "power" })
+              )
+            ),
+            _react2.default.createElement(
+              _nativeBase.Body,
+              null,
+              _react2.default.createElement(
+                _nativeBase.Title,
+                null,
+                "Home"
+              )
+            ),
+            _react2.default.createElement(
+              _nativeBase.Right,
+              null,
+              _react2.default.createElement(
+                _nativeBase.Button,
+                {
+                  transparent: true,
+                  onPress: function onPress() {
+                    return DrawerNav.navigate("DrawerOpen");
+                  }
+                },
+                _react2.default.createElement(_nativeBase.Icon, { active: true, name: "menu" })
+              )
+            )
+          ),
+          _react2.default.createElement(
             _nativeBase.Content,
             null,
             _react2.default.createElement(

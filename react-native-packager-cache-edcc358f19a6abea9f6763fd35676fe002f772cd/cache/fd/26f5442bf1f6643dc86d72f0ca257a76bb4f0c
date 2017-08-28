@@ -82,33 +82,19 @@ var ForgotPassword = function (_Component) {
           )
         ),
         _react2.default.createElement(
-          _nativeBase.Text,
-          null,
-          "A reset email has been sent to the email associated with this account. Please check your email inbox. If you fail to receive an email please press the resend email link below."
-        ),
-        _react2.default.createElement(
-          TouchableOpacity,
-          {
-            style: _styles2.default.row,
-            onPress: function onPress() {
-              return _this2.props.navigation.navigate("ForgotPassword");
-            }
-          },
-          _react2.default.createElement(
-            _nativeBase.Text,
-            { style: _styles2.default.text },
-            "Resend Email"
-          )
-        ),
-        _react2.default.createElement(
           _nativeBase.Content,
           null,
+          _react2.default.createElement(
+            _nativeBase.Text,
+            null,
+            "Thank you for submitting your feedback. You will receive an email confirmation of the receipt of this survey."
+          ),
           _react2.default.createElement(
             _nativeBase.Button,
             {
               style: _styles2.default.btn,
               onPress: function onPress() {
-                return _this2.props.navigation.navigate("Login");
+                return _this2.props.navigation.navigate("Home");
               } },
             _react2.default.createElement(
               _nativeBase.Text,

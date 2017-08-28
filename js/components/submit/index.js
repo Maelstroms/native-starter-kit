@@ -26,11 +26,47 @@ class ForgotPassword extends Component {
   render() {
     return (
       <Container style={styles.container}>
+       <Header>
+          <Left>
+
+            <Button
+              transparent
+              onPress={() => {
+                DrawerNav.dispatch(
+                  NavigationActions.reset({
+                    index: 0,
+                    actions: [NavigationActions.navigate({ routeName: "Home" })]
+                  })
+                );
+                DrawerNav.goBack();
+              }}
+            >
+              <Icon active name="power" />
+            </Button>
+          </Left>
+
+          <Body>
+            <Title>Home</Title>
+          </Body>
+
+          <Right>
+            <Button
+              transparent
+              onPress={() => DrawerNav.navigate("DrawerOpen")}
+            >
+              <Icon active name="menu" />
+            </Button>
+          </Right>
+        </Header>
+
 
         <Content>
+        <Text>
+        Thank you for submitting your feedback. You will receive an email confirmation of the receipt of this survey.
+        </Text>
            <Button
             style={styles.btn}
-            onPress={() => this.props.navigation.navigate("Login")}>
+            onPress={() => this.props.navigation.navigate("Home")}>
                   <Text>Cancel</Text>
            </Button>
         </Content>
