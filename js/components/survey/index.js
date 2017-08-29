@@ -232,7 +232,7 @@ class Survey extends Component {
                </Button>
               <Button
                 style={styles.btn}
-                onPress={this.resetForm}>
+                onPress={this.resetForm()}>
                       <Text>Clear</Text>
                </Button>
                <Button
