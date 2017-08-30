@@ -43,8 +43,7 @@ export default class DrawBar extends React.Component {
                 style={{ height: 80, width: 70 }}
                 source={{
                   uri: "https://github.com/GeekyAnts/NativeBase-KitchenSink/raw/react-navigation/img/logo.png"
-                }}
-              />
+                }}/>
             </TouchableOpacity>
           </Image>
           <List
@@ -58,8 +57,7 @@ export default class DrawBar extends React.Component {
                   <Text>{data}</Text>
                 </ListItem>
               );
-            }}
-          />
+            }}/>
         </Content>
       </Container>
     );

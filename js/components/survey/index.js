@@ -1,9 +1,19 @@
 import React, { Component } from "react";
-import { TouchableOpacity, DatePickerIOS, TextInput, AppRegistry,  ScrollView,
-  StyleSheet, TouchableHighlight, Image} from "react-native";
+import {
+  TouchableOpacity,
+  DatePickerIOS,
+  TextInput,
+  AppRegistry,
+  ScrollView,
+  StyleSheet,
+  TouchableHighlight,
+  Image
+} from "react-native";
+import PropTypes from 'prop-types';
 import ModalDropdown from 'react-native-modal-dropdown';
 import DatePicker from 'react-native-datepicker'
 import CustomMultiPicker from "react-native-multiple-select-list";
+import InputForm from '../../containers/inputForm';
 import { connect } from "react-redux";
 import BlankPage2 from "../blankPage2";
 import { DrawerNavigator, NavigationActions } from "react-navigation";
@@ -23,6 +33,7 @@ import {
 import { Grid, Row } from "react-native-easy-grid";
 import { setIndex } from "../../actions/list";
 import styles from "./styles";
+import widgits from "../../reducers";
 
 const DEMO_OPTIONS_1 = ['option 1', 'option 2', 'option 3', 'option 4', 'option 5', 'option 6', 'option 7', 'option 8', 'option 9'];
 const userList = {
@@ -37,10 +48,10 @@ class Survey extends Component {
     this.state = {  text1: 'Please Describe',
                     text2: 'Please Describe',
                     dropdownSelection: '-- Choose --',
-                    date:"2016-05-15"
+                    date: new Date()
                   };
     this.baseState = this.state;
-    //this.resetForm = this.resetForm.bind(this);
+    this.resetForm = this.resetForm.bind(this);
   }
 
   getState() {
@@ -48,17 +59,22 @@ class Survey extends Component {
             number: 0
         }
     }
-  resetForm() {
-    console.log('button working?');
-    console.log(this.baseState);
-    console.log(this.state);
-    //this.setState(this.baseState);
-    //return this.forceUpdate();
-  }
+
 
   static navigationOptions = {
     header: null
-  };
+  }
+
+
+
+resetForm() {
+    console.log("reset form function");
+    console.log("STATE");
+    console.log(this.state);
+    console.log(this.baseState);
+    console.log("PROPS");
+    console.log(this.props);
+  }
 
 
   render() {
@@ -115,6 +131,9 @@ class Survey extends Component {
                   options={DEMO_OPTIONS_1}
                   dropdownTextStyle={styles.dropdown_3_dropdownTextStyle}
                   dropdownTextHighlightStyle={styles.dropdown_3_dropdownTextHighlightStyle}/>
+
+                  {/*<InputForm />*/}
+
 
                   <Text>Date</Text>
 
@@ -232,7 +251,7 @@ class Survey extends Component {
                </Button>
               <Button
                 style={styles.btn}
-                onPress={this.resetForm()}>
+                onPress={this.resetForm}>
                       <Text>Clear</Text>
                </Button>
                <Button
@@ -251,7 +270,6 @@ class Survey extends Component {
       </Container>
 
     );
-    this.baseState = this.state;
   }
 }
 
@@ -263,6 +281,7 @@ function bindAction(dispatch) {
 //This const creates the list for the items...
 const mapStateToProps = state => ({
   name: state.user.name,
+  text1: state.text1
 });
 
 const SurveySwagger = connect(mapStateToProps, bindAction)(Survey);

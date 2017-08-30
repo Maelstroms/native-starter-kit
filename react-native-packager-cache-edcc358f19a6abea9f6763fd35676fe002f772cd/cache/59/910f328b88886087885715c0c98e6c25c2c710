@@ -8,6 +8,10 @@ var _react2 = babelHelpers.interopRequireDefault(_react);
 
 var _reactNative = require("react-native");
 
+var _propTypes = require("prop-types");
+
+var _propTypes2 = babelHelpers.interopRequireDefault(_propTypes);
+
 var _reactNativeModalDropdown = require("react-native-modal-dropdown");
 
 var _reactNativeModalDropdown2 = babelHelpers.interopRequireDefault(_reactNativeModalDropdown);
@@ -19,6 +23,10 @@ var _reactNativeDatepicker2 = babelHelpers.interopRequireDefault(_reactNativeDat
 var _reactNativeMultipleSelectList = require("react-native-multiple-select-list");
 
 var _reactNativeMultipleSelectList2 = babelHelpers.interopRequireDefault(_reactNativeMultipleSelectList);
+
+var _inputForm = require("../../containers/inputForm");
+
+var _inputForm2 = babelHelpers.interopRequireDefault(_inputForm);
 
 var _reactRedux = require("react-redux");
 
@@ -38,6 +46,10 @@ var _styles = require("./styles");
 
 var _styles2 = babelHelpers.interopRequireDefault(_styles);
 
+var _reducers = require("../../reducers");
+
+var _reducers2 = babelHelpers.interopRequireDefault(_reducers);
+
 var DEMO_OPTIONS_1 = ['option 1', 'option 2', 'option 3', 'option 4', 'option 5', 'option 6', 'option 7', 'option 8', 'option 9'];
 var userList = {
   "123": "Tom",
@@ -56,9 +68,10 @@ var Survey = function (_Component) {
     _this.state = { text1: 'Please Describe',
       text2: 'Please Describe',
       dropdownSelection: '-- Choose --',
-      date: "2016-05-15"
+      date: new Date()
     };
     _this.baseState = _this.state;
+    _this.resetForm = _this.resetForm.bind(_this);
     return _this;
   }
 
@@ -72,9 +85,12 @@ var Survey = function (_Component) {
   }, {
     key: "resetForm",
     value: function resetForm() {
-      console.log('button working?');
-      console.log(this.baseState);
+      console.log("reset form function");
+      console.log("STATE");
       console.log(this.state);
+      console.log(this.baseState);
+      console.log("PROPS");
+      console.log(this.props);
     }
   }, {
     key: "render",
@@ -350,7 +366,6 @@ var Survey = function (_Component) {
           )
         )
       );
-      this.baseState = this.state;
     }
   }]);
   return Survey;
@@ -371,7 +386,8 @@ function bindAction(dispatch) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    name: state.user.name
+    name: state.user.name,
+    text1: state.text1
   };
 };
 
